@@ -1,0 +1,82 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.table_custom{
+  position:absolute;
+  top: 29px;
+  left:253px;
+  width:auto;
+}
+.icon{
+  cursor: pointer;
+}
+.selected{
+  background-color: #dddddd !important;
+}
+.text{
+  width:90%;
+  align-self: center;
+  border-radius: 8px;
+  border:1px solid #dddddd;
+  height:20px;
+  padding:10px;
+}
+.form-group{
+  text-align:center;
+}
+.form_custom{
+  position:absolute;
+  top: 174px;
+  left:253px;
+  width:auto;
+}
+.chaeck_box{
+  position: absolute;
+  top: 225px;
+  right:400px;
+}
+.select_full_width{
+  width:100%;
+}
+.fullWidth{
+  width:100%;
+}
+.hight{
+  max-height: 100px;
+}
+.caseButton{
+  border-bottom: 1px solid #222222;
+  margin-bottom: 31px;
+  position: absolute;
+  right: 4px;
+  top: -86px;
+  width:100%;
+}
+.button-case{
+  float: right;
+}
