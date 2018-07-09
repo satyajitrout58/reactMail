@@ -34,10 +34,10 @@ function getSorting(order, orderBy) {
 }
 
 const columnData = [
-  { id: 'From', numeric: false, disablePadding: false, label: 'From' },
-  { id: 'Subject', numeric: false, disablePadding: false, label: 'Subject' },
-  { id: 'Receved', numeric: false, disablePadding: false, label: 'Receved' },
-  { id: 'Action', numeric: false, disablePadding: false, label: 'Action' },
+  { id: 'From', numeric: false, disablePadding: true, label: 'From' },
+  { id: 'Subject', numeric: true, disablePadding: false, label: 'Subject' },
+  { id: 'Receved', numeric: true, disablePadding: false, label: 'Receved' },
+  { id: 'Action', numeric: true, disablePadding: false, label: 'Action' },
   //{ id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
 ];
 
@@ -208,43 +208,7 @@ class EnhancedTable extends React.Component {
       ],
       page: 0,
       rowsPerPage: 5,
-      mockData: {},
     };
-  }
-  componentDidMount() {
-    const apiData = {
-      "data":[
-         {
-            "_id":"5b41d1d55364447daff5f85c",
-            "received":"2018-07-08T08:56:53.310Z",
-            "from":"milpas999@gmail.com",
-            "subject":"This is test mail"
-         },
-         {
-            "_id":"5b41d43729e2617e58b7e286",
-            "received":"2018-07-08T09:07:03.365Z",
-            "from":"milind@gmail.com",
-            "subject":"This is test mail"
-         },
-         {
-            "_id":"5b41d89229e2617e58b7e287",
-            "received":"2018-07-08T09:25:38.405Z",
-            "from":"test@gmail.com",
-            "subject":"This is test mail"
-         }
-      ],
-      "error":"",
-      "flagMsg":"SUCC"
-   };
-   let aData = [];
-   aData = apiData.data.map( (data) =>{
-     console.log(data);
-    return createData(data.from, data.subject, data.received)
-   });
-   console.log(aData);
-   this.setState({
-     data: aData
-   });
   }
 
   handleRequestSort = (event, property) => {
@@ -341,17 +305,18 @@ class EnhancedTable extends React.Component {
                       <TableCell numeric>{n.fat}</TableCell>
                       <TableCell numeric>
                       <span className="icon">
-                      <Tooltip title="Delete" role="button">
-                        <DeleteIcon/>
-                      </Tooltip>
-                      </span>
-                      <span className="icon">
                       <NavLink to={"createcase/" + n.id}>
                       <Tooltip title="Create Case">
                       <Folder/>
                       </Tooltip>
                       </NavLink>
                       </span>
+                      <span className="icon">
+                      <Tooltip title="Delete" role="button">
+                        <DeleteIcon/>
+                      </Tooltip>
+                      </span>
+                      
                       </TableCell>
                       {/* <TableCell numeric>{n.protein}</TableCell> */}
                     </TableRow>
