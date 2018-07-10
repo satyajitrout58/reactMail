@@ -200,7 +200,7 @@ class InputAdornments extends React.Component {
           />
         </FormControl>
 
- 
+ <div className={'checkbox-box'}>
         <TextField
           select
           label="Language"
@@ -234,7 +234,34 @@ class InputAdornments extends React.Component {
               {option.label}
             </MenuItem>
           ))}
-        </TextField>		
+        </TextField>	
+
+          <span className="chaeck_box">
+        
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={this.state.checkedA}
+              onChange={this.handleChange('checkedA')}
+              value="checkedA"
+            />
+          }
+          label="Urgent"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={this.state.checkedB}
+              onChange={this.handleChange('checkedB')}
+              value="checkedB"
+              color="primary"
+            />
+          }
+          label="Sensitive"
+        />   
+        
+        </span>      
+        </div>	
         <FormControl fullWidth className={classes.margin}></FormControl>
         <FormControl fullWidth className={"hight"}>
         <TextField 
@@ -279,31 +306,7 @@ class InputAdornments extends React.Component {
         </span>
         </FormControl>
 
-        <span className="chaeck_box">
-        
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedA}
-              onChange={this.handleChange('checkedA')}
-              value="checkedA"
-            />
-          }
-          label="Urgent"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedB}
-              onChange={this.handleChange('checkedB')}
-              value="checkedB"
-              color="primary"
-            />
-          }
-          label="Sensitive"
-        />   
-        
-        </span>
+
         <FormControl fullWidth className={classes.margin}>
           <SimpleTable/>
           </FormControl>

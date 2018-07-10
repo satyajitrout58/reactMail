@@ -223,3 +223,9 @@ label + .MuiInput-formControl-174 {
 .mailContent{
   margin:20px;
 }
+.status-box{
+  width: 100%;
+}
+.InputAdornments-root-130{
+width:60% !important;
+}
