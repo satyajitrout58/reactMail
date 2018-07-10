@@ -16,10 +16,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Clear from '@material-ui/icons/Clear';
 import Folder from '@material-ui/icons/Folder';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import { NavLink } from "react-router-dom";
+import $ from 'jquery';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
@@ -210,7 +212,58 @@ class EnhancedTable extends React.Component {
       rowsPerPage: 5,
     };
   }
-
+  componentDidMount() {
+    const apiData = {
+      "data":[
+         {
+            "_id":"5b41d1d55364447daff5f85c",
+            "received":"2018-07-08T08:56:53.310Z",
+            "from":"milpas999@gmail.com",
+            "subject":"This is test mail"
+         },
+         {
+            "_id":"5b41d43729e2617e58b7e286",
+            "received":"2018-07-08T09:07:03.365Z",
+            "from":"milind@gmail.com",
+            "subject":"This is test mail"
+         },
+         {
+            "_id":"5b41d89229e2617e58b7e287",
+            "received":"2018-07-08T09:25:38.405Z",
+            "from":"test@gmail.com",
+            "subject":"This is test mail"
+         }
+      ],
+      "error":"",
+      "flagMsg":"SUCC"
+   };
+   
+   $.ajax({
+    async:false,
+     url: 'http://13.126.203.222:3006/email',
+     crossDomain:true,
+     headers: {'Access-Control-Allow-Origin': '*'},
+     success: (apiData)=> {
+     let aData = apiData.data.map( (data) =>{
+       // console.log(data);
+       return createData(data.from, data.subject, data.received)
+      });
+      console.log(aData);
+      this.setState({
+        data: aData
+      });
+     }
+   });
+  //  let aData = [];
+  //  aData = apiData.data.map( (data) =>{
+  //    console.log(data);
+  //   return createData(data.from, data.subject, data.received)
+  //  });
+  //  console.log(aData);
+  //  this.setState({
+  //    data: aData
+  //  });
+  }
   handleRequestSort = (event, property) => {
     // const orderBy = property;
     // let order = 'desc';
@@ -313,7 +366,7 @@ class EnhancedTable extends React.Component {
                       </span>
                       <span className="icon">
                       <Tooltip title="Delete" role="button">
-                        <DeleteIcon/>
+                        <Clear/>
                       </Tooltip>
                       </span>
                       

@@ -200,3 +200,26 @@ label + .MuiInput-formControl-174 {
 .chaeck_box .MuiFormControlLabel-root-198 {
   margin-left: 0!important;
 }
+.client_add_box{
+  color: #3889d3;
+  height: 71px !important;
+  position: absolute;
+  right: -29px;
+  top: 13px;
+  width: 38px !important;
+} 
+.ref_add_box{
+  color: #3889d3;
+  height: 71px !important;
+  position: absolute;
+  right: -37px;
+  top: 5px;
+  width: 38px !important; 
+}
+.save_clear .MuiSvgIcon-root-56{
+  border:1px solid;
+  border-radius: 50%;
+}
+.mailContent{
+  margin:20px;
+}

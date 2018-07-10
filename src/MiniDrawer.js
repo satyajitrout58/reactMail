@@ -16,6 +16,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from './component/tileData';
 import EnhancedTable from './component/inbox/inboxMail';
 import './App.css';
+import Grid from '@material-ui/core/Grid';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -140,7 +141,20 @@ class MiniDrawer extends React.Component {
         
           <div className={classes.toolbar} >
           <div className="table_custom">
-          <Typography noWrap> <EnhancedTable/></Typography>
+          <Typography noWrap> 
+           <EnhancedTable />
+           <div className={"mailContent"}>
+              <Grid xs={12}>
+              <b>From : </b> milpas999@gmail.com
+              </Grid>
+              <Grid xs={12}>
+              <b>Subject : </b> This is test mail
+              </Grid>  
+              <Grid xs={12}>
+               <p> Hello Mail body </p>
+              </Grid>                          
+           </div>
+          </Typography>
           </div>
           </div>
         

@@ -20,6 +20,8 @@ import SimpleTable from './caseTable';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import CheckCircle from '@material-ui/icons/CheckCircle';
+import AddBox from '@material-ui/icons/AddBox';
+import Clear from '@material-ui/icons/Clear';
 
 const styles = theme => ({
   root: {
@@ -87,6 +89,9 @@ class InputAdornments extends React.Component {
       <Button variant="contained" color="primary" className={classes.button}>
         Save <CheckCircle/>
       </Button> 
+     <span class={'save_clear'}>
+      <Clear/>
+      </span>
       </span> 
       </div>  
       <Divider />
@@ -249,6 +254,7 @@ class InputAdornments extends React.Component {
             </MenuItem>
           ))}
         </TextField>
+        <AddBox className={'client_add_box'} primary/>
         </FormControl>
         <FormControl fullWidth className={'hight'}>
         <TextField 
@@ -268,6 +274,9 @@ class InputAdornments extends React.Component {
             </MenuItem>
           ))}
         </TextField>
+        <span>
+        <AddBox className={'ref_add_box'} primary/>
+        </span>
         </FormControl>
 
         <span className="chaeck_box">
