@@ -45,16 +45,132 @@ const styles = theme => ({
 
 const ranges = [
   {
-    value: '0-20',
-    label: '0 to 20',
+    value: 'Assign A',
+    label: 'Assign A',
   },
   {
-    value: '21-50',
-    label: '21 to 50',
+    value: 'Assign B',
+    label: 'Assign B',
   },
   {
-    value: '51-100',
-    label: '51 to 100',
+    value: 'Assign C',
+    label: 'Assign C',
+  },
+];
+
+const ranges1 = [
+  {
+    value: 'Type 1',
+    label: 'Type 1',
+  },
+  {
+    value: 'Type 2',
+    label: 'Type 2',
+  },
+  {
+    value: 'Type 3',
+    label: 'Type 3',
+  },
+];
+
+const ranges2 = [
+  {
+    value: 'Sub type 1',
+    label: 'Sub type 1',
+  },
+  {
+    value: 'Sub type 2',
+    label: 'Sub type 2',
+  },
+  {
+    value: 'Sub type 3',
+    label: 'Sub type 3',
+  },
+];
+
+const ranges3 = [
+  {
+    value: 'Active',
+    label: 'Active',
+  },
+  {
+    value: 'InActive',
+    label: 'InActive',
+  },
+  {
+    value: 'Pogress',
+    label: 'Pogress',
+  },
+];
+
+const ranges4 = [
+  {
+    value: 'English',
+    label: 'English',
+  },
+  {
+    value: 'Latin',
+    label: 'Latin',
+  },
+];
+
+const ranges5 = [
+  {
+    value: 'Assign To 1',
+    label: 'Assign To 1',
+  },
+  {
+    value: 'Assign To 2',
+    label: 'Assign To 2',
+  },
+  {
+    value: 'Assign To 3',
+    label: 'Assign To 3',
+  },
+];
+
+const ranges6 = [
+  {
+    value: 'Client 1',
+    label: 'Client 1',
+  },
+  {
+    value: 'Client 2',
+    label: 'Client 2',
+  },
+  {
+    value: 'Client 3',
+    label: 'Client 3',
+  },
+];
+
+const ranges7 = [
+  {
+    value: 'Reference 1',
+    label: 'Reference 1',
+  },
+  {
+    value: 'Reference 2',
+    label: 'Reference 2',
+  },
+  {
+    value: 'Reference 3',
+    label: 'Reference 3',
+  },
+];
+
+const ranges8 = [
+  {
+    value: 'Assign To 1',
+    label: 'Assign To 1',
+  },
+  {
+    value: 'Assign To 2',
+    label: 'Assign To 2',
+  },
+  {
+    value: 'Assign To 3',
+    label: 'Assign To 3',
   },
 ];
 
@@ -148,7 +264,7 @@ class InputAdornments extends React.Component {
           }}
         >
         
-          {ranges.map(option => (
+          {ranges1.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -165,7 +281,7 @@ class InputAdornments extends React.Component {
           }}
         >
         
-          {ranges.map(option => (
+          {ranges2.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -183,7 +299,7 @@ class InputAdornments extends React.Component {
           }}
         >
         
-          {ranges.map(option => (
+          {ranges3.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -212,7 +328,7 @@ class InputAdornments extends React.Component {
           }}
         >
         
-          {ranges.map(option => (
+          {ranges4.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -229,7 +345,7 @@ class InputAdornments extends React.Component {
           }}
         >
         
-          {ranges.map(option => (
+          {ranges5.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -275,7 +391,7 @@ class InputAdornments extends React.Component {
           }}
         >
     
-          {ranges.map(option => (
+          {ranges6.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -295,7 +411,7 @@ class InputAdornments extends React.Component {
           }}
         >
     
-          {ranges.map(option => (
+          {ranges7.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>

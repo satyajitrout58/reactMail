@@ -188,6 +188,7 @@ const styles = theme => ({
 class EnhancedTable extends React.Component {
   constructor(props) {
     super(props);
+    this.handelMountData = this.handelMountData.bind(this);
 
     this.state = {
       order: 'asc',
@@ -246,7 +247,7 @@ class EnhancedTable extends React.Component {
      success: (apiData)=> {
      let aData = apiData.data.map( (data) =>{
        // console.log(data);
-       return createData(data.from, data.subject, data.received)
+       return createData(data.from, data.subject, data.received, data._id)
       });
       console.log(aData);
       this.setState({
@@ -311,6 +312,36 @@ class EnhancedTable extends React.Component {
   handleChangeRowsPerPage = event => {
     this.setState({ rowsPerPage: event.target.value });
   };
+  handelMountData(){
+    $.ajax({
+      async:false,
+       url: 'http://13.126.203.222:3006/email',
+       crossDomain:true,
+       headers: {'Access-Control-Allow-Origin': '*'},
+       success: (apiData)=> {
+       let aData = apiData.data.map( (data) =>{
+         // console.log(data);
+         return createData(data.from, data.subject, data.received, data._id)
+        });
+        console.log(aData);
+        this.setState({
+          data: aData
+        });
+       }
+     });
+  }
+  handleDelete = (id) => {
+    $.ajax({
+      async:false,
+       url: 'http://13.126.203.222:3006/email/' + id,
+       crossDomain:true,
+       headers: {'Access-Control-Allow-Origin': '*'},
+       success: (apiData)=> {
+        console.log(apiData);
+        this.handelMountData();
+       }
+     });
+  };
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
@@ -366,7 +397,7 @@ class EnhancedTable extends React.Component {
                       </span>
                       <span className="icon">
                       <Tooltip title="Delete" role="button">
-                        <Clear/>
+                        <Clear onClick={this.handleDelete.bind(this, n.carbs)}/>
                       </Tooltip>
                       </span>
                       

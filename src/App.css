@@ -102,7 +102,7 @@
   width: 20px!important;
 }
 .MuiListItemIcon-root-123 {
-  margin-right: 6px!important;
+  margin-right: 11px!important;
 }
 .MuiTypography-subheading-77 {
   font-size: 14px!important;
@@ -186,16 +186,17 @@ label + .MuiInput-formControl-174 {
   border-bottom: none!important;
 }
 .InputAdornments-root-130 {
-  width: 53%;
+  width: 60%;
 }
 .chaeck_box {
   width: 188px;
-  left: 596px;
   right: auto!important;
   border: 1px solid #d6d1d1;
-  top: 246px!important;
+  top: 0px!important;
   border-radius: 5px;
-
+  position: relative;
+  float: right;
+ margin-right: 30px;
 }
 .chaeck_box .MuiFormControlLabel-root-198 {
   margin-left: 0!important;
@@ -226,6 +227,17 @@ label + .MuiInput-formControl-174 {
 .status-box{
   width: 100%;
 }
-.InputAdornments-root-130{
-width:60% !important;
+.checkbox-box {
+  width: 100%;
+  display: block;
+}
+.checkbox-box .MuiSelect-selectMenu-191 {
+  width: 159px;
+}
+.save_clear .MuiSvgIcon-root-56 {
+  height: auto;
+}
+.save_clear {
+  margin-top: 15px;
+  float: right;
 }
