@@ -22,6 +22,8 @@ import Button from '@material-ui/core/Button';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 import AddBox from '@material-ui/icons/AddBox';
 import Clear from '@material-ui/icons/Clear';
+import { Grid } from '@material-ui/core';
+import $ from 'jquery';
 
 const styles = theme => ({
   root: {
@@ -159,20 +161,7 @@ const ranges7 = [
   },
 ];
 
-const ranges8 = [
-  {
-    value: 'Assign To 1',
-    label: 'Assign To 1',
-  },
-  {
-    value: 'Assign To 2',
-    label: 'Assign To 2',
-  },
-  {
-    value: 'Assign To 3',
-    label: 'Assign To 3',
-  },
-];
+
 
 class InputAdornments extends React.Component {
   state = {
@@ -180,11 +169,31 @@ class InputAdornments extends React.Component {
     password: '',
     weight: '',
     weightRange: '',
+    assignARange: '',
+    typeRange: '',
+    subTypeRange: '',
+    statusRange: '',
+    languageRange: '',
+    assignRange: '',
+    clientRange: '',
+    referenceRange: '',
     showPassword: false,
+    receved:'',
+    due: '',
+    subject: '',
+    summary: '',
+    urgent: false,
+    sensitive: false,
   };
 
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
+  };
+
+  handleChangeCheck = prop => event => {
+      //console.log([prop]);
+      !this.state[prop] ? this.setState({ [prop]: true }) : this.setState({ [prop]: false }) ;
+      console.log(this.state[prop]);
   };
 
   handleMouseDownPassword = event => {
@@ -194,14 +203,40 @@ class InputAdornments extends React.Component {
   handleClickShowPassword = () => {
     this.setState(state => ({ showPassword: !state.showPassword }));
   };
-
+  handelSave = () => {
+    $.post({
+      async:true,
+       url: 'http://13.126.203.222:3006/case/create',
+      // method: 'post',
+       data: {assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
+       crossDomain:true,
+       headers: {'Access-Control-Allow-Origin': '*'},
+       success: (apiData)=> {
+        
+       }
+     });
+  }
+  componentDidMount(){
+   // console.log(this.props);
+    $.post({
+      async:true,
+       url: 'http://13.126.203.222:3006/case/create',
+      // method: 'post',
+       data: {assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
+       crossDomain:true,
+       headers: {'Access-Control-Allow-Origin': '*'},
+       success: (apiData)=> {
+        
+       }
+     });   
+  }
   render() {
     const { classes } = this.props;
 
     return (
       <div className={classes.root}>
       <div className={'caseButton'}>
-      <span className={'button-case'}>
+      <span className={'button-case'} onClick={this.handelSave.bind(this)}>
       <Button variant="contained" color="primary" className={classes.button}>
         Save <CheckCircle/>
       </Button> 
@@ -211,18 +246,13 @@ class InputAdornments extends React.Component {
       </span> 
       </div>  
       <Divider />
-        <TextField
-          label="Case Id"
-          id="simple-start-adornment"
-          className={classNames(classes.margin, classes.textField)}
-          InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
-          }}
-        />
+
         <TextField
           label="Receved"
           id="simple-start-adornment"
           className={classNames(classes.margin, classes.textField)}
+          value={this.state.receved}
+          onChange={this.handleChange('receved')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -230,6 +260,8 @@ class InputAdornments extends React.Component {
         <TextField
           label="Due"
           id="simple-start-adornment"
+          onChange={this.handleChange('due')}
+          value={this.state.due}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -239,8 +271,8 @@ class InputAdornments extends React.Component {
           select
           label="Assigned To"
           className={classNames(classes.margin, classes.textField)}
-          value={this.state.weightRange}
-          onChange={this.handleChange('weightRange')}
+          value={this.state.assignARange}
+          onChange={this.handleChange('assignARange')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -257,8 +289,8 @@ class InputAdornments extends React.Component {
           select
           label="Type"
           className={classNames(classes.margin, classes.textField)}
-          value={this.state.weightRange}
-          onChange={this.handleChange('weightRange')}
+          value={this.state.typeRange}
+          onChange={this.handleChange('typeRange')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -274,8 +306,8 @@ class InputAdornments extends React.Component {
           select
           label="Sub Type"
           className={classNames(classes.margin, classes.textField)}
-          value={this.state.weightRange}
-          onChange={this.handleChange('weightRange')}
+          value={this.state.subTypeRange}
+          onChange={this.handleChange('subTypeRange')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -292,8 +324,8 @@ class InputAdornments extends React.Component {
           select
           label="Status"
           className={classNames(classes.margin, classes.textField)}
-          value={this.state.weightRange}
-          onChange={this.handleChange('weightRange')}
+          value={this.state.statusRange}
+          onChange={this.handleChange('statusRange')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -310,8 +342,8 @@ class InputAdornments extends React.Component {
           <InputLabel htmlFor="adornment-amount">Subject</InputLabel>
           <Input
             id="adornment-amount"
-            value={this.state.amount}
-            onChange={this.handleChange('amount')}
+            value={this.state.subject}
+            onChange={this.handleChange('subject')}
             startAdornment={<InputAdornment position="start"></InputAdornment>}
           />
         </FormControl>
@@ -321,8 +353,8 @@ class InputAdornments extends React.Component {
           select
           label="Language"
           className={classNames(classes.margin, classes.textField)}
-          value={this.state.weightRange}
-          onChange={this.handleChange('weightRange')}
+          value={this.state.languageRange}
+          onChange={this.handleChange('languageRange')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -338,8 +370,8 @@ class InputAdornments extends React.Component {
           select
           label="Assigned To"
           className={classNames(classes.margin, classes.textField)}
-          value={this.state.weightRange}
-          onChange={this.handleChange('weightRange')}
+          value={this.state.assignRange}
+          onChange={this.handleChange('assignRange')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -357,9 +389,9 @@ class InputAdornments extends React.Component {
         <FormControlLabel
           control={
             <Checkbox
-              checked={this.state.checkedA}
-              onChange={this.handleChange('checkedA')}
-              value="checkedA"
+              checked={this.state.urgent}
+              onChange={this.handleChangeCheck('urgent')}
+              value="urgent"
             />
           }
           label="Urgent"
@@ -367,8 +399,8 @@ class InputAdornments extends React.Component {
         <FormControlLabel
           control={
             <Checkbox
-              checked={this.state.checkedB}
-              onChange={this.handleChange('checkedB')}
+              checked={this.state.sensitive}
+              onChange={this.handleChangeCheck('sensitive')}
               value="checkedB"
               color="primary"
             />
@@ -384,8 +416,8 @@ class InputAdornments extends React.Component {
           select
           label="Client *"
           className={classNames(classes.textField, classes.margin)}
-          value={this.state.weightRange}
-          onChange={this.handleChange('weightRange')}
+          value={this.state.clientRange}
+          onChange={this.handleChange('clientRange')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -404,8 +436,8 @@ class InputAdornments extends React.Component {
           select
           label="Reference *"
           className={classNames(classes.textField, classes)}
-          value={this.state.weightRange}
-          onChange={this.handleChange('weightRange')}
+          value={this.state.referenceRange}
+          onChange={this.handleChange('referenceRange')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -428,11 +460,11 @@ class InputAdornments extends React.Component {
           </FormControl>
 
         <FormControl fullWidth className={classes.margin}>
-          <InputLabel htmlFor="adornment-amount">Subject</InputLabel>
+          <InputLabel htmlFor="adornment-amount">Summary</InputLabel>
           <Input
             id="adornment-amount"
-            value={this.state.amount}
-            onChange={this.handleChange('amount')}
+            value={this.state.summary}
+            onChange={this.handleChange('summary')}
             startAdornment={<InputAdornment position="start"></InputAdornment>}
           />
         </FormControl>

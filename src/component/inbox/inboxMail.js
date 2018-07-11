@@ -389,7 +389,7 @@ class EnhancedTable extends React.Component {
                       <TableCell numeric>{n.fat}</TableCell>
                       <TableCell numeric>
                       <span className="icon">
-                      <NavLink to={"createcase/" + n.id}>
+                      <NavLink to={"createcase/" + encodeURIComponent(n.carbs)}>
                       <Tooltip title="Create Case">
                       <Folder/>
                       </Tooltip>
