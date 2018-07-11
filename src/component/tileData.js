@@ -10,10 +10,11 @@ import SendIcon from '@material-ui/icons/Send';
 import MailIcon from '@material-ui/icons/Mail';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ReportIcon from '@material-ui/icons/Report';
+import Person from '@material-ui/icons/Person';
 import '../App.css';
 export const mailFolderListItems = (
   <div>
-    <ListItem button className={'selected'}>
+    <ListItem button className={'selected'} onClick={ () => { window.location.href="/" }}>
       <ListItemIcon>
         <InboxIcon />
       </ListItemIcon>
@@ -36,6 +37,12 @@ export const mailFolderListItems = (
         <DraftsIcon />
       </ListItemIcon>
       <ListItemText primary="Drafts" />
+    </ListItem>
+    <ListItem button onClick={ () => { window.location.href="/user" }}>
+      <ListItemIcon>
+        <Person />
+      </ListItemIcon>
+      <ListItemText primary="User" />
     </ListItem>
   </div>
 );
