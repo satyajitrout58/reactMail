@@ -333,6 +333,7 @@ class EnhancedTable extends React.Component {
   handleDelete = (id) => {
     $.ajax({
       async:false,
+      type: 'delete',
        url: 'http://13.126.203.222:3006/email/' + id,
        crossDomain:true,
        headers: {'Access-Control-Allow-Origin': '*'},

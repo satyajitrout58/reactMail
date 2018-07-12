@@ -212,7 +212,10 @@ class InputAdornments extends React.Component {
        crossDomain:true,
        headers: {'Access-Control-Allow-Origin': '*'},
        success: (apiData)=> {
-        window.location.href='/';
+         if(apiData){
+          window.location.href='/';
+         }
+       
        }
      });
   }
