@@ -345,6 +345,18 @@ class EnhancedTable extends React.Component {
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+  showContentDetail = (mdata) =>{
+    $.ajax({
+      async:false,
+       url: 'http://13.126.203.222:3006/email/' +  mdata.carbs,
+       crossDomain:true,
+       headers: {'Access-Control-Allow-Origin': '*'},
+       success: (apiData)=> {
+        this.props.onSelectLanguage(apiData.data);
+       }
+     });
+      
+  }
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -382,7 +394,7 @@ class EnhancedTable extends React.Component {
                       <TableCell padding="checkbox">
                         <Checkbox checked={isSelected} onClick={event => this.handleClick(event, n.id)}/>
                       </TableCell>
-                      <TableCell component="th" scope="row" padding="none">
+                      <TableCell component="th" scope="row" padding="none" onClick={this.showContentDetail.bind(this,n)}>
                         {n.name}
                       </TableCell>
                       <TableCell numeric>{n.calories}</TableCell>

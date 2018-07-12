@@ -87,10 +87,24 @@ const styles = theme => ({
 class MiniDrawer extends React.Component {
   state = {
     open: true,
+    from: '',
+    mailSubject: '',
+    mailBody: '',
+    mailHtml: false
   };
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
+  };
+
+  handleLanguage = (data) => {
+    console.log(data[0].from);
+    this.setState({
+      from: data[0].from,
+      mailSubject: data[0].subject,
+      mailBody: data[0].content,
+      mailHtml: true
+    });
   };
 
   handleDrawerClose = () => {
@@ -142,18 +156,21 @@ class MiniDrawer extends React.Component {
           <div className={classes.toolbar} >
           <div className="table_custom">
           <Typography noWrap> 
-           <EnhancedTable />
+           <EnhancedTable onSelectLanguage={this.handleLanguage}/>
+            { this.state.mailHtml && (
            <div className={"mailContent"}>
               <Grid xs={12}>
-              <b>From : </b> milpas999@gmail.com
+              <b>From : </b> {this.state.from}
               </Grid>
               <Grid xs={12}>
-              <b>Subject : </b> This is test mail
+              <b>Subject : </b> {this.state.mailSubject}
               </Grid>  
               <Grid xs={12}>
-               <p> Hello Mail body </p>
+               <p>  {this.state.mailBody} </p>
               </Grid>                          
            </div>
+            )
+            }
           </Typography>
           </div>
           </div>
