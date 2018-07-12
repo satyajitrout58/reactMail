@@ -334,7 +334,7 @@ class EnhancedTable extends React.Component {
     $.ajax({
       async:false,
       type: 'delete',
-       url: 'http://13.126.203.222:3006/email/' + id,
+       url: 'http://13.126.203.222:3006/email/delete/' + id,
        crossDomain:true,
        headers: {'Access-Control-Allow-Origin': '*'},
        success: (apiData)=> {
