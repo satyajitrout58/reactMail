@@ -146,16 +146,16 @@
 .caseButton {
   border-bottom: 1px solid #d4d4d4!important;
 }
-.MuiInput-underline-177:before {
+.MuiInput-underline-177:before,.MuiInput-underline-156:before {
   display: none;
 }
-label + .MuiInput-formControl-174 {
+label + .MuiInput-formControl-174,label + .MuiInput-formControl-153 {
     margin-top: 16px;
     border: 1px solid #cacaca!important;
     border-radius: 5px!important;
     
 }
-.MuiInputLabel-formControl-164 {
+.MuiInputLabel-formControl-164,.MuiInputLabel-animated-146 {
   position: relative!important;
     margin-bottom: -10px!important;
 }
@@ -163,10 +163,10 @@ label + .MuiInput-formControl-174 {
   font-size: 18px!important;
   font-weight: 400!important;
 }
-.MuiSelect-root-189 svg {
+.MuiSelect-root-189 svg,.MuiSelect-root-264 svg {
   display: none!important;
 }
-.MuiSelect-selectMenu-191:after {
+.MuiSelect-selectMenu-191:after,.MuiSelect-selectMenu-266:after {
   content: '';
   width: 30px;
   height: 32px;
@@ -182,10 +182,10 @@ label + .MuiInput-formControl-174 {
 .MuiInput-input-181:after {
   /*display: none;*/
 }
-.MuiInput-underline-177:after {
+.MuiInput-underline-177:after,.MuiInput-underline-156:after {
   border-bottom: none!important;
 }
-.InputAdornments-root-130 {
+.InputAdornments-root-130,.InputAdornments-root-109 {
   width: 60%;
 }
 .chaeck_box {
@@ -240,4 +240,7 @@ label + .MuiInput-formControl-174 {
 .save_clear {
   margin-top: 15px;
   float: right;
+}
+.InputAdornments-textField-112 {
+  width: 98%;
 }

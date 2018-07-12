@@ -165,25 +165,35 @@ const ranges7 = [
 
 class InputAdornments extends React.Component {
   state = {
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
-    assignARange: '',
-    typeRange: '',
-    subTypeRange: '',
-    statusRange: '',
-    languageRange: '',
-    assignRange: '',
-    clientRange: '',
-    referenceRange: '',
-    showPassword: false,
-    receved:'',
-    due: '',
-    subject: '',
-    summary: '',
-    urgent: false,
-    sensitive: false,
+    type: '',
+    subType: '',
+    status: '',
+    titel: '',
+    sufix: '',
+    ocupation: '',
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    companyName: '',
+    relatedTo: '',
+    phone1: '',
+    ext1: '',
+    type1: '',
+    email1: '',
+    phone2: '',
+    ext2: '',
+    type2: '',
+    email2: '',
+    phone3: '',
+    ext3: '',
+    type3: '',
+    email3: '',
+    address: '',
+    type4: '',
+    adress2: '',
+    city: '',
+    pinCode: '',
+    PostCode: ''
   };
 
   handleChange = prop => event => {
@@ -206,9 +216,9 @@ class InputAdornments extends React.Component {
   handelSave = () => {
     $.post({
       async:true,
-       url: 'http://13.126.203.222:3006/case/create',
+       url: 'http://13.126.203.222:3006/user/create',
       // method: 'post',
-       data: {assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
+       data: {type:this.state.type, subType: this.state.subType, status: this.state.status, titel: this.state.titel, sufix: this.state.sufix, ocupation: this.state.ocupation, firstName: this.state.firstName, middleName: this.state.middleName, lastName: this.state.lastName, companyName: this.state.companyName, relatedTo: this.state.relatedTo, phone1: this.state.phone1, ext1: this.state.ext1, type1: this.state.type1, email1: this.state.email1, phone2:this.state.phone2,ext2:this.state.ext2,type2:this.state.type2,email2:this.state.email2,phone3:this.state.phone3,ext3:this.state.ext3,type3:this.state.type3,email3:this.state.email3,address:this.state.address,type4:this.state.type4,adress2:this.state.adress2,city:this.state.city,pinCode:this.state.pinCode,PostCode:this.state.PostCode },
        crossDomain:true,
        headers: {'Access-Control-Allow-Origin': '*'},
        success: (apiData)=> {
@@ -238,8 +248,8 @@ class InputAdornments extends React.Component {
           label="Type"
           id="simple-start-adornment"
           className={classNames(classes.margin, classes.textField)}
-          value={this.state.receved}
-          onChange={this.handleChange('receved')}
+          value={this.state.type}
+          onChange={this.handleChange('type')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -247,8 +257,8 @@ class InputAdornments extends React.Component {
         <TextField
           label="Sub Type"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('subType')}
+          value={this.state.subType}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -257,8 +267,8 @@ class InputAdornments extends React.Component {
         <TextField
           label="Status"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('status')}
+          value={this.state.status}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -270,8 +280,8 @@ class InputAdornments extends React.Component {
           select
           label="Titel"
           className={classNames(classes.margin, classes.textField)}
-          value={this.state.assignARange}
-          onChange={this.handleChange('assignARange')}
+          value={this.state.titel}
+          onChange={this.handleChange('titel')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -289,8 +299,8 @@ class InputAdornments extends React.Component {
           select
           label="Sufix"
           className={classNames(classes.margin, classes.textField)}
-          value={this.state.assignARange}
-          onChange={this.handleChange('assignARange')}
+          value={this.state.sufix}
+          onChange={this.handleChange('sufix')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -308,8 +318,8 @@ class InputAdornments extends React.Component {
           select
           label="Ocupation"
           className={classNames(classes.margin, classes.textField)}
-          value={this.state.assignARange}
-          onChange={this.handleChange('assignARange')}
+          value={this.state.ocupation}
+          onChange={this.handleChange('ocupation')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -327,8 +337,8 @@ class InputAdornments extends React.Component {
         <TextField
           label="First Name"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('firstName')}
+          value={this.state.firstName}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -338,8 +348,8 @@ class InputAdornments extends React.Component {
         <TextField
           label="Middle Name"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('middleName')}
+          value={this.state.middleName}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -349,8 +359,8 @@ class InputAdornments extends React.Component {
         <TextField
           label="Last Name"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('lastName')}
+          value={this.state.lastName}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -363,8 +373,8 @@ class InputAdornments extends React.Component {
           <InputLabel htmlFor="adornment-amount">Organisation or Company Name</InputLabel>
           <Input
             id="adornment-amount"
-            value={this.state.subject}
-            onChange={this.handleChange('subject')}
+            value={this.state.companyName}
+            onChange={this.handleChange('companyName')}
             startAdornment={<InputAdornment position="start"></InputAdornment>}
           />
         </FormControl>
@@ -374,8 +384,8 @@ class InputAdornments extends React.Component {
           select
           label="Related To"
           className={classNames(classes.textField, classes.margin)}
-          value={this.state.clientRange}
-          onChange={this.handleChange('clientRange')}
+          value={this.state.relatedTo}
+          onChange={this.handleChange('relatedTo')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -393,8 +403,8 @@ class InputAdornments extends React.Component {
         <TextField
           label="Phone"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('phone1')}
+          value={this.state.phone1}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -403,8 +413,8 @@ class InputAdornments extends React.Component {
          <TextField
           label="Ext"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('ext1')}
+          value={this.state.ext1}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -414,8 +424,8 @@ class InputAdornments extends React.Component {
           select
           label="Type"
           className={classNames(classes.textField, classes.margin)}
-          value={this.state.clientRange}
-          onChange={this.handleChange('clientRange')}
+          value={this.state.type1}
+          onChange={this.handleChange('type1')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -431,8 +441,8 @@ class InputAdornments extends React.Component {
          <TextField
           label="Email"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('email1')}
+          value={this.state.email1}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -444,8 +454,8 @@ class InputAdornments extends React.Component {
   <TextField
           label="Phone"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('phone2')}
+          value={this.state.phone2}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -454,8 +464,8 @@ class InputAdornments extends React.Component {
          <TextField
           label="Ext"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('ext2')}
+          value={this.state.ext2}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -465,8 +475,8 @@ class InputAdornments extends React.Component {
           select
           label="Type"
           className={classNames(classes.textField, classes.margin)}
-          value={this.state.clientRange}
-          onChange={this.handleChange('clientRange')}
+          value={this.state.type2}
+          onChange={this.handleChange('type2')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -482,8 +492,8 @@ class InputAdornments extends React.Component {
          <TextField
           label="Email"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('email2')}
+          value={this.state.email2}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -496,8 +506,8 @@ class InputAdornments extends React.Component {
         <TextField
           label="Phone"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('phone3')}
+          value={this.state.phone3}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -506,8 +516,8 @@ class InputAdornments extends React.Component {
          <TextField
           label="Ext"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('ext3')}
+          value={this.state.ext3}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -517,8 +527,8 @@ class InputAdornments extends React.Component {
           select
           label="Type"
           className={classNames(classes.textField, classes.margin)}
-          value={this.state.clientRange}
-          onChange={this.handleChange('clientRange')}
+          value={this.state.type3}
+          onChange={this.handleChange('type3')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -534,8 +544,8 @@ class InputAdornments extends React.Component {
          <TextField
           label="Email"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('email3')}
+          value={this.state.email3}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -548,8 +558,8 @@ class InputAdornments extends React.Component {
         <TextField
           label="Address"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('address')}
+          value={this.state.address}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -560,8 +570,8 @@ class InputAdornments extends React.Component {
           select
           label="Type"
           className={classNames(classes.textField, classes.margin)}
-          value={this.state.clientRange}
-          onChange={this.handleChange('clientRange')}
+          value={this.state.type4}
+          onChange={this.handleChange('type4')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -581,8 +591,8 @@ class InputAdornments extends React.Component {
 <TextField
           label="Address2"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('adress2')}
+          value={this.state.adress2}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -594,8 +604,8 @@ class InputAdornments extends React.Component {
         <TextField
           label="City"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('city')}
+          value={this.state.city}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -606,8 +616,8 @@ class InputAdornments extends React.Component {
          <TextField
           label="Pincode"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('pinCode')}
+          value={this.state.pinCode}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -616,8 +626,8 @@ class InputAdornments extends React.Component {
         <TextField
           label="Postal Code"
           id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
+          onChange={this.handleChange('PostCode')}
+          value={this.state.PostCode}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,

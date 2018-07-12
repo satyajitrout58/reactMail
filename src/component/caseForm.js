@@ -212,23 +212,23 @@ class InputAdornments extends React.Component {
        crossDomain:true,
        headers: {'Access-Control-Allow-Origin': '*'},
        success: (apiData)=> {
-        
+        window.location.href='/';
        }
      });
   }
   componentDidMount(){
    // console.log(this.props);
-    $.post({
-      async:true,
-       url: 'http://13.126.203.222:3006/case/create',
-      // method: 'post',
-       data: {assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
-       crossDomain:true,
-       headers: {'Access-Control-Allow-Origin': '*'},
-       success: (apiData)=> {
-        
-       }
-     });   
+    // /$.post({
+    //   async:true,
+    //    url: 'http://13.126.203.222:3006/case/create',
+    //   // method: 'post',
+    //    data: {assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
+    //    crossDomain:true,
+    //    headers: {'Access-Control-Allow-Origin': '*'},
+    //    success: (apiData)=> {
+    //     window.location.href='/';
+    //    }
+    //  });   
   }
   render() {
     const { classes } = this.props;
