@@ -212,12 +212,28 @@ class InputAdornments extends React.Component {
     handelSave = () => {
       let email = '';
       $.ajax({
-        async:true,
+        async:false,
          url: 'http://13.126.203.222:3006/email/'+ id,
         // method: 'post',
          crossDomain:true,
          headers: {'Access-Control-Allow-Origin': '*'},
          success: (da)=> {
+
+          $.post({
+            async:true,
+            url: 'http://13.126.203.222:3006/case/create',
+            // method: 'post',
+            data: {userEmail: da.data[0], assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
+            crossDomain:true,
+            headers: {'Access-Control-Allow-Origin': '*'},
+            success: (apiData)=> {
+              if(apiData){
+               window.location.href='/';
+              }
+            
+            }
+          });      
+
     //       if(da){
       $.ajax({
         async:true,
@@ -227,24 +243,11 @@ class InputAdornments extends React.Component {
          headers: {'Access-Control-Allow-Origin': '*'},
          success: (a)=> {
            
-          $.post({
-            async:true,
-            url: 'http://13.126.203.222:3006/case/create',
-            // method: 'post',
-            data: {userEmail: a.data[0].email, assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
-            crossDomain:true,
-            headers: {'Access-Control-Allow-Origin': '*'},
-            success: (apiData)=> {
-              if(apiData){
-               window.location.href='/';
-              }
-            
-            }
-          });   
+            console.log(a);
 
          }
         });
-           
+                   
   //         }
          
          }
