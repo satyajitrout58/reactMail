@@ -15,7 +15,6 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import '../App.css';
 import SimpleTable from './caseTable';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
@@ -24,7 +23,7 @@ import AddBox from '@material-ui/icons/AddBox';
 import Clear from '@material-ui/icons/Clear';
 import { Grid } from '@material-ui/core';
 import $ from 'jquery';
-
+import '../App.css';
 let url_string = window.location.href;
 let url = new URL(url_string);
 let id = url.pathname.slice(12);
@@ -269,6 +268,7 @@ class InputAdornments extends React.Component {
     //     window.location.href='/';
     //    }
     //  });   
+	window.location.reload();
   }
   render() {
     const { classes } = this.props;
