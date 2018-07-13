@@ -24,10 +24,11 @@ import Clear from '@material-ui/icons/Clear';
 import { Grid } from '@material-ui/core';
 import $ from 'jquery';
 import '../App.css';
+import Cookies from 'universal-cookie';
 let url_string = window.location.href;
 let url = new URL(url_string);
 let id = url.pathname.slice(12);
-console.log(id);
+const cookies = new Cookies();
 
 const styles = theme => ({
   root: {
@@ -209,20 +210,11 @@ class InputAdornments extends React.Component {
   };
 
     handelSave = () => {
-      let email = '';
-      $.ajax({
-        async:false,
-         url: 'http://13.126.203.222:3006/email/'+ id,
-        // method: 'post',
-         crossDomain:true,
-         headers: {'Access-Control-Allow-Origin': '*'},
-         success: (da)=> {
-
           $.post({
             async:true,
             url: 'http://13.126.203.222:3006/case/create',
             // method: 'post',
-            data: {userEmail: da.data[0], assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
+            data: {assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
             crossDomain:true,
             headers: {'Access-Control-Allow-Origin': '*'},
             success: (apiData)=> {
@@ -232,43 +224,22 @@ class InputAdornments extends React.Component {
             
             }
           });      
-
-    //       if(da){
-      $.ajax({
-        async:true,
-         url: 'http://13.126.203.222:3006/user/getUserInfo/'+ da.data[0].from,
-        // method: 'post',
-         crossDomain:true,
-         headers: {'Access-Control-Allow-Origin': '*'},
-         success: (a)=> {
-           
-            console.log(a);
-
-         }
-        });
-                   
-  //         }
          
-         }
-       });
-     //  console.log(email);
-       return false;
-
+         
+  }
+  updateCookie = () => {
+	  cookies.set('myCat', 'access', { path: '/' });
+  }
+  componentWillUnmount() {
+	  cookies.set('myCat', 'noaccess', { path: '/' });
   }
   componentDidMount(){
-   // console.log(this.props);
-    // /$.post({
-    //   async:true,
-    //    url: 'http://13.126.203.222:3006/case/create',
-    //   // method: 'post',
-    //    data: {assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
-    //    crossDomain:true,
-    //    headers: {'Access-Control-Allow-Origin': '*'},
-    //    success: (apiData)=> {
-    //     window.location.href='/';
-    //    }
-    //  });   
-	window.location.reload();
+	const cookieDat = cookies.get('myCat');
+	if(cookieDat != 'access'){
+		this.updateCookie();
+		console.log('huuu' + cookieDat); // Pacman
+		window.location.reload();
+	}
   }
   render() {
     const { classes } = this.props;
