@@ -255,15 +255,6 @@ class EnhancedTable extends React.Component {
       });
      }
    });
-  //  let aData = [];
-  //  aData = apiData.data.map( (data) =>{
-  //    console.log(data);
-  //   return createData(data.from, data.subject, data.received)
-  //  });
-  //  console.log(aData);
-  //  this.setState({
-  //    data: aData
-  //  });
   }
   handleRequestSort = (event, property) => {
     // const orderBy = property;
@@ -358,6 +349,22 @@ class EnhancedTable extends React.Component {
      });
       
   }
+  
+  handleCreateCase = (email) => {
+      $.ajax({
+        async:true,
+         url: 'http://13.126.203.222:3006/user/getUserInfo/'+ email,
+        // method: 'post',
+         crossDomain:true,
+         headers: {'Access-Control-Allow-Origin': '*'},
+         success: (a)=> {
+           
+            console.log(a);
+
+         }
+        });
+  }
+  
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -402,9 +409,9 @@ class EnhancedTable extends React.Component {
                       <TableCell numeric>{n.fat}</TableCell>
                       <TableCell numeric>
                       <span className="icon">
-                      <NavLink to={"createcase/" + encodeURIComponent(n.carbs)}>
+                      <NavLink to={"createcase/" + n.carbs}>
                       <Tooltip title="Create Case">
-                      <Folder/>
+                      <Folder onClick={this.handleCreateCase.bind(this, n.name)}/>
                       </Tooltip>
                       </NavLink>
                       </span>
