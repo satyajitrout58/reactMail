@@ -400,6 +400,8 @@ class InputAdornments extends React.Component {
         <AddBox className={'client_add_box'} primary/>
         </FormControl>
 
+		
+		<Grid sm={'3'}>
         <TextField
           label="Phone"
           id="simple-start-adornment"
@@ -410,6 +412,8 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         /> 
+		</Grid>
+		<Grid sm={'3'}>
          <TextField
           label="Ext"
           id="simple-start-adornment"
@@ -419,7 +423,9 @@ class InputAdornments extends React.Component {
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
-        />        
+        />   
+		</Grid>
+		<Grid sm={'3'}>
         <TextField 
           select
           label="Type"
@@ -437,7 +443,8 @@ class InputAdornments extends React.Component {
             </MenuItem>
           ))}
         </TextField>
-
+		</Grid>
+		<Grid sm={'3'}>
          <TextField
           label="Email"
           id="simple-start-adornment"
@@ -447,11 +454,12 @@ class InputAdornments extends React.Component {
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
-        />     
+        />   
+		</Grid>
   <FormControl fullWidth className={classes.margin}></FormControl>
 
-  
-  <TextField
+		<Grid sm={'3'}>
+		<TextField
           label="Phone"
           id="simple-start-adornment"
           onChange={this.handleChange('phone2')}
@@ -461,6 +469,8 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         /> 
+		</Grid>
+		<Grid sm={'3'}>
          <TextField
           label="Ext"
           id="simple-start-adornment"
@@ -470,7 +480,9 @@ class InputAdornments extends React.Component {
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
-        />        
+        />   
+		</Grid>
+		<Grid sm={'3'}>
         <TextField 
           select
           label="Type"
@@ -488,7 +500,8 @@ class InputAdornments extends React.Component {
             </MenuItem>
           ))}
         </TextField>
-
+		</Grid>
+		<Grid sm={'3'}>
          <TextField
           label="Email"
           id="simple-start-adornment"
@@ -498,11 +511,12 @@ class InputAdornments extends React.Component {
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
-        />     
+        />  
+		</Grid>
   <FormControl fullWidth className={classes.margin}></FormControl>
 
 
-
+		<Grid sm={'3'}>
         <TextField
           label="Phone"
           id="simple-start-adornment"
@@ -513,6 +527,8 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         /> 
+		</Grid>
+		<Grid sm={'3'}>
          <TextField
           label="Ext"
           id="simple-start-adornment"
@@ -522,7 +538,9 @@ class InputAdornments extends React.Component {
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
-        />        
+        />   
+		</Grid>
+		<Grid sm={'3'}>
         <TextField 
           select
           label="Type"
@@ -540,7 +558,8 @@ class InputAdornments extends React.Component {
             </MenuItem>
           ))}
         </TextField>
-
+		</Grid>
+		<Grid sm={'3'}>
          <TextField
           label="Email"
           id="simple-start-adornment"
@@ -551,6 +570,7 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         />     
+		</Grid>
   <FormControl fullWidth className={classes.margin}></FormControl>
 
 
@@ -587,7 +607,7 @@ class InputAdornments extends React.Component {
           
   <FormControl fullWidth className={classes.margin}></FormControl>
 
-<FormControl fullWidth className={''}>
+<FormControl fullWidth className={"hight"}>
 <TextField
           label="Address2"
           id="simple-start-adornment"
