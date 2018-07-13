@@ -25,6 +25,11 @@ import Clear from '@material-ui/icons/Clear';
 import { Grid } from '@material-ui/core';
 import $ from 'jquery';
 
+let url_string = window.location.href;
+let url = new URL(url_string);
+let id = url.pathname.slice(12);
+console.log(id);
+
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -203,21 +208,50 @@ class InputAdornments extends React.Component {
   handleClickShowPassword = () => {
     this.setState(state => ({ showPassword: !state.showPassword }));
   };
-  handelSave = () => {
-    $.post({
-      async:true,
-       url: 'http://13.126.203.222:3006/case/create',
-      // method: 'post',
-       data: {assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
-       crossDomain:true,
-       headers: {'Access-Control-Allow-Origin': '*'},
-       success: (apiData)=> {
-         if(apiData){
-          window.location.href='/';
+
+    handelSave = () => {
+      let email = '';
+      $.ajax({
+        async:true,
+         url: 'http://13.126.203.222:3006/email/'+ id,
+        // method: 'post',
+         crossDomain:true,
+         headers: {'Access-Control-Allow-Origin': '*'},
+         success: (da)=> {
+    //       if(da){
+      $.ajax({
+        async:true,
+         url: 'http://13.126.203.222:3006/user/getUserInfo/'+ da.data[0].from,
+        // method: 'post',
+         crossDomain:true,
+         headers: {'Access-Control-Allow-Origin': '*'},
+         success: (a)=> {
+           
+          $.post({
+            async:true,
+            url: 'http://13.126.203.222:3006/case/create',
+            // method: 'post',
+            data: {userEmail: a.data[0].email, assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
+            crossDomain:true,
+            headers: {'Access-Control-Allow-Origin': '*'},
+            success: (apiData)=> {
+              if(apiData){
+               window.location.href='/';
+              }
+            
+            }
+          });   
+
          }
-       
-       }
-     });
+        });
+           
+  //         }
+         
+         }
+       });
+     //  console.log(email);
+       return false;
+
   }
   componentDidMount(){
    // console.log(this.props);
