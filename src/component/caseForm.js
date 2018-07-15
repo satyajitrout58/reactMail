@@ -189,12 +189,17 @@ class InputAdornments extends React.Component {
     summary: '',
     urgent: false,
     sensitive: false,
+    typeErrorText: '',
+    error_val: true,
+    referenceErrorText: '',
+    clientErrorText: '',
+    subjectErrorText: ''
   };
 
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
   };
-
+  
   handleChangeCheck = prop => event => {
       //console.log([prop]);
       !this.state[prop] ? this.setState({ [prop]: true }) : this.setState({ [prop]: false }) ;
@@ -210,21 +215,72 @@ class InputAdornments extends React.Component {
   };
 
     handelSave = () => {
-          $.post({
-            async:true,
-            url: 'http://13.126.203.222:3006/case/create',
-            // method: 'post',
-            data: {assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
-            crossDomain:true,
-            headers: {'Access-Control-Allow-Origin': '*'},
-            success: (apiData)=> {
-              if(apiData){
-               window.location.href='/';
+        if(this.state.typeRange == ''){
+          this.setState({
+            typeErrorText: 'Type is Required',
+            error_val: false
+          });
+        }
+        
+        if (this.state.subject == '') {
+          this.setState({
+            subjectErrorText: 'Subject is Required',
+            error_val: false
+          });
+          
+        } 
+        
+        if (this.state.clientRange == '') {
+          this.setState({
+            clientErrorText: 'Please Select Client',
+            error_val: false
+          });
+        } 
+        
+        if (this.state.referenceRange == '') {
+          this.setState({
+            referenceErrorText: 'Please Select Reference',
+            error_val: false
+          });
+        } 
+
+        setTimeout(() => {
+          if(this.state.error_val){
+            $.post({
+              async:true,
+              url: 'http://13.126.203.222:3006/case/create',
+              // method: 'post',
+              data: {assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
+              crossDomain:true,
+              headers: {'Access-Control-Allow-Origin': '*'},
+              success: (apiData)=> {
+                if(apiData){
+                  window.location.href='/';
+                }
+              
               }
-            
-            }
-          });      
-         
+            });
+            }  
+        }, 1000);
+
+       
+
+       // if(error_val == 0){
+        // $.post({
+        //   async:true,
+        //   url: 'http://13.126.203.222:3006/case/create',
+        //   // method: 'post',
+        //   data: {assignA:this.state.assignARange, type: this.state.typeRange, subType: this.state.subTypeRange, status: this.state.statusRange, language: this.state.languageRange, assign: this.state.assignRange, client: this.state.clientRange, reference: this.state.referenceRange, receved: this.state.receved, due: this.state.due, subject: this.state.subject, summary: this.state.summary, urgent: this.state.urgent, sensitive: this.state.sensitive },
+        //   crossDomain:true,
+        //   headers: {'Access-Control-Allow-Origin': '*'},
+        //   success: (apiData)=> {
+        //     if(apiData){
+        //       window.location.href='/';
+        //     }
+          
+        //   }
+        // });      
+       // } 
          
   }
   updateCookie = () => {
@@ -259,11 +315,23 @@ class InputAdornments extends React.Component {
       <Divider />
 
         <TextField
+          label="Case Id"
+          id="simple-start-adornment"
+          className={classNames(classes.margin, classes.textField)}
+          value={this.state.receved}
+          onChange={this.handleChange('receved')}
+          placeholder={'Case Id'}
+          InputProps={{
+            startAdornment: <InputAdornment position="start"></InputAdornment>,
+          }}
+        /> 
+        <TextField
           label="Receved"
           id="simple-start-adornment"
           className={classNames(classes.margin, classes.textField)}
           value={this.state.receved}
           onChange={this.handleChange('receved')}
+          placeholder={''}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
@@ -297,8 +365,11 @@ class InputAdornments extends React.Component {
         </TextField>
         <FormControl fullWidth className={classes.margin}></FormControl>
         <TextField
+          error
+        //  id="error"
           select
-          label="Type"
+          label="Type *"
+          helperText={ this.state.typeErrorText}
           className={classNames(classes.margin, classes.textField)}
           value={this.state.typeRange}
           onChange={this.handleChange('typeRange')}
@@ -350,13 +421,14 @@ class InputAdornments extends React.Component {
         </TextField>
                        
         <FormControl fullWidth className={classes.margin}>
-          <InputLabel htmlFor="adornment-amount">Subject</InputLabel>
-          <Input
+          <InputLabel htmlFor="adornment-amount" className="error_leable">Subject *</InputLabel>
+          <Input        
             id="adornment-amount"
             value={this.state.subject}
             onChange={this.handleChange('subject')}
             startAdornment={<InputAdornment position="start"></InputAdornment>}
           />
+          <div className={'error_leable'} >{ this.state.subjectErrorText}</div>
         </FormControl>
 
  <div className={'checkbox-box'}>
@@ -424,8 +496,10 @@ class InputAdornments extends React.Component {
         <FormControl fullWidth className={classes.margin}></FormControl>
         <FormControl fullWidth className={"hight"}>
         <TextField 
+          error
           select
           label="Client *"
+          helperText={ this.state.clientErrorText}
           className={classNames(classes.textField, classes.margin)}
           value={this.state.clientRange}
           onChange={this.handleChange('clientRange')}
@@ -444,8 +518,10 @@ class InputAdornments extends React.Component {
         </FormControl>
         <FormControl fullWidth className={'hight'}>
         <TextField 
+          error
           select
           label="Reference *"
+          helperText={ this.state.referenceErrorText }
           className={classNames(classes.textField, classes)}
           value={this.state.referenceRange}
           onChange={this.handleChange('referenceRange')}

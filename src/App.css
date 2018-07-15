@@ -186,7 +186,7 @@ label + .MuiInput-formControl-174,label + .MuiInput-formControl-153 {
   border-bottom: none!important;
 }
 .InputAdornments-root-130,.InputAdornments-root-109 {
-  width: 60%;
+  width: 80%;
 }
 .chaeck_box {
   width: 188px;
@@ -243,4 +243,7 @@ label + .MuiInput-formControl-174,label + .MuiInput-formControl-153 {
 }
 .InputAdornments-textField-112 {
   width: 98%;
+}
+.error_leable{
+  color: red !important;
 }

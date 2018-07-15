@@ -193,7 +193,14 @@ class InputAdornments extends React.Component {
     adress2: '',
     city: '',
     pinCode: '',
-    PostCode: ''
+    PostCode: '',
+    error_val: true,
+    typeErrorText: '',
+    firstNameErrorText: '',
+    lastNameErrorText: '',
+    phoneErrorText: '',
+    emailErrorText: ''
+
   };
 
   handleChange = prop => event => {
@@ -214,17 +221,61 @@ class InputAdornments extends React.Component {
     this.setState(state => ({ showPassword: !state.showPassword }));
   };
   handelSave = () => {
-    $.post({
-      async:true,
-       url: 'http://13.126.203.222:3006/user/create',
-      // method: 'post',
-       data: {type:this.state.type, subType: this.state.subType, status: this.state.status, titel: this.state.titel, sufix: this.state.sufix, ocupation: this.state.ocupation, firstName: this.state.firstName, middleName: this.state.middleName, lastName: this.state.lastName, companyName: this.state.companyName, relatedTo: this.state.relatedTo, phone1: this.state.phone1, ext1: this.state.ext1, type1: this.state.type1, email1: this.state.email1, phone2:this.state.phone2,ext2:this.state.ext2,type2:this.state.type2,email2:this.state.email2,phone3:this.state.phone3,ext3:this.state.ext3,type3:this.state.type3,email3:this.state.email3,address:this.state.address,type4:this.state.type4,adress2:this.state.adress2,city:this.state.city,pinCode:this.state.pinCode,PostCode:this.state.PostCode },
-       crossDomain:true,
-       headers: {'Access-Control-Allow-Origin': '*'},
-       success: (apiData)=> {
-        
-       }
-     });
+    if(this.state.type == '') {
+      this.setState({
+        typeErrorText: 'Please select Types',
+        error_val: false
+      });
+    }
+
+    if(this.state.firstName == '') {
+      this.setState({
+        firstNameErrorText: 'First name is required',
+        error_val: false
+      });
+    }
+    
+    else if(this.state.lastName == '') {
+      console.log('Hiii' + this.state.lastName);
+      this.setState({
+        lastNameErrorText: 'Last name is required',
+        error_val: false
+      });
+    }
+
+    else if(this.state.phone1 == '') {
+      this.setState({
+        phoneErrorText: 'Phone name is required',
+        error_val: false
+      });
+    }
+
+   else  if(this.state.email1 == '') {
+      this.setState({
+        emailErrorText: 'Email name is required',
+        error_val: false
+      });
+    } else {
+      this.setState({
+        error_val: true
+      });
+    }
+
+    setTimeout(() => {
+      if(this.state.error_val){    
+        $.post({
+          async:true,
+          url: 'http://13.126.203.222:3006/user/create',
+          // method: 'post',
+          data: {type:this.state.type, subType: this.state.subType, status: this.state.status, titel: this.state.titel, sufix: this.state.sufix, ocupation: this.state.ocupation, firstName: this.state.firstName, middleName: this.state.middleName, lastName: this.state.lastName, companyName: this.state.companyName, relatedTo: this.state.relatedTo, phone1: this.state.phone1, ext1: this.state.ext1, type1: this.state.type1, email1: this.state.email1, phone2:this.state.phone2,ext2:this.state.ext2,type2:this.state.type2,email2:this.state.email2,phone3:this.state.phone3,ext3:this.state.ext3,type3:this.state.type3,email3:this.state.email3,address:this.state.address,type4:this.state.type4,adress2:this.state.adress2,city:this.state.city,pinCode:this.state.pinCode,PostCode:this.state.PostCode },
+          crossDomain:true,
+          headers: {'Access-Control-Allow-Origin': '*'},
+          success: (apiData)=> {
+            window.location.href='/';
+          }
+        });
+        }
+    },1000);
   }
   
   render() {
@@ -246,6 +297,8 @@ class InputAdornments extends React.Component {
 
         <TextField
           label="Type"
+          helperText={ this.state.typeErrorText}
+          error
           id="simple-start-adornment"
           className={classNames(classes.margin, classes.textField)}
           value={this.state.type}
@@ -336,6 +389,8 @@ class InputAdornments extends React.Component {
 
         <TextField
           label="First Name"
+          error
+          helperText={ this.state.firstNameErrorText}
           id="simple-start-adornment"
           onChange={this.handleChange('firstName')}
           value={this.state.firstName}
@@ -358,6 +413,8 @@ class InputAdornments extends React.Component {
 
         <TextField
           label="Last Name"
+          error
+          helperText={ this.state.lastNameErrorText}
           id="simple-start-adornment"
           onChange={this.handleChange('lastName')}
           value={this.state.lastName}
@@ -404,6 +461,8 @@ class InputAdornments extends React.Component {
 		<Grid sm={'3'}>
         <TextField
           label="Phone"
+          error
+          helperText={ this.state.phoneErrorText}
           id="simple-start-adornment"
           onChange={this.handleChange('phone1')}
           value={this.state.phone1}
@@ -446,6 +505,8 @@ class InputAdornments extends React.Component {
 		</Grid>
 		<Grid sm={'3'}>
          <TextField
+          error
+          helperText={ this.state.emailErrorText}
           label="Email"
           id="simple-start-adornment"
           onChange={this.handleChange('email1')}
