@@ -2,21 +2,13 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import '../App.css';
-import SimpleTable from './caseTable';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import CheckCircle from '@material-ui/icons/CheckCircle';
@@ -60,76 +52,6 @@ const ranges = [
   },
 ];
 
-const ranges1 = [
-  {
-    value: 'Type 1',
-    label: 'Type 1',
-  },
-  {
-    value: 'Type 2',
-    label: 'Type 2',
-  },
-  {
-    value: 'Type 3',
-    label: 'Type 3',
-  },
-];
-
-const ranges2 = [
-  {
-    value: 'Sub type 1',
-    label: 'Sub type 1',
-  },
-  {
-    value: 'Sub type 2',
-    label: 'Sub type 2',
-  },
-  {
-    value: 'Sub type 3',
-    label: 'Sub type 3',
-  },
-];
-
-const ranges3 = [
-  {
-    value: 'Active',
-    label: 'Active',
-  },
-  {
-    value: 'InActive',
-    label: 'InActive',
-  },
-  {
-    value: 'Pogress',
-    label: 'Pogress',
-  },
-];
-
-const ranges4 = [
-  {
-    value: 'English',
-    label: 'English',
-  },
-  {
-    value: 'Latin',
-    label: 'Latin',
-  },
-];
-
-const ranges5 = [
-  {
-    value: 'Assign To 1',
-    label: 'Assign To 1',
-  },
-  {
-    value: 'Assign To 2',
-    label: 'Assign To 2',
-  },
-  {
-    value: 'Assign To 3',
-    label: 'Assign To 3',
-  },
-];
 
 const ranges6 = [
   {
@@ -145,22 +67,6 @@ const ranges6 = [
     label: 'Client 3',
   },
 ];
-
-const ranges7 = [
-  {
-    value: 'Reference 1',
-    label: 'Reference 1',
-  },
-  {
-    value: 'Reference 2',
-    label: 'Reference 2',
-  },
-  {
-    value: 'Reference 3',
-    label: 'Reference 3',
-  },
-];
-
 
 
 class InputAdornments extends React.Component {

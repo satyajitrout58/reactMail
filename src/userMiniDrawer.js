@@ -5,17 +5,14 @@ import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { mailFolderListItems } from './component/caseTileData';
 import InputAdornments from './component/userForm'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { FormGroup, Input } from 'reactstrap';
 import './App.css';
 const drawerWidth = 240;
 
@@ -159,23 +156,4 @@ MiniDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-
-class Example extends React.Component {
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-      <label>
-        Pick your favorite flavor:
-        <select value="lime" onChange={this.handleChange} className={"text"}>
-          <option value="grapefruit">Grapefruit</option>
-          <option value="lime">Lime</option>
-          <option value="coconut">Coconut</option>
-          <option value="mango">Mango</option>
-        </select>
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
-    );
-  }
-}
 export default withStyles(styles, { withTheme: true })(MiniDrawer);

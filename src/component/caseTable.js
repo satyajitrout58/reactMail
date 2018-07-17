@@ -19,7 +19,7 @@ const styles = theme => ({
   },
 });
 
-let id = 0;
+let id = 0; // eslint-disable-next-line no-alert
 function createData(code, subject, status) {
   id += 1;
   return {code, subject, status};

@@ -22,6 +22,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import { NavLink } from "react-router-dom";
 import $ from 'jquery';
+import Cookies from 'universal-cookie';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
@@ -214,31 +215,6 @@ class EnhancedTable extends React.Component {
     };
   }
   componentDidMount() {
-    const apiData = {
-      "data":[
-         {
-            "_id":"5b41d1d55364447daff5f85c",
-            "received":"2018-07-08T08:56:53.310Z",
-            "from":"milpas999@gmail.com",
-            "subject":"This is test mail"
-         },
-         {
-            "_id":"5b41d43729e2617e58b7e286",
-            "received":"2018-07-08T09:07:03.365Z",
-            "from":"milind@gmail.com",
-            "subject":"This is test mail"
-         },
-         {
-            "_id":"5b41d89229e2617e58b7e287",
-            "received":"2018-07-08T09:25:38.405Z",
-            "from":"test@gmail.com",
-            "subject":"This is test mail"
-         }
-      ],
-      "error":"",
-      "flagMsg":"SUCC"
-   };
-   
    $.ajax({
     async:false,
      url: 'http://13.126.203.222:3006/email',
@@ -351,6 +327,8 @@ class EnhancedTable extends React.Component {
   }
   
   handleCreateCase = (email) => {
+    const cookies = new Cookies();
+    cookies.set('email', email, { path: '/' });
       $.ajax({
         async:true,
          url: 'http://13.126.203.222:3006/user/getUserInfo/'+ email,

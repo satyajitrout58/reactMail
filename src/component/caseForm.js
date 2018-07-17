@@ -2,26 +2,20 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import SimpleTable from './caseTable';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 import AddBox from '@material-ui/icons/AddBox';
 import Clear from '@material-ui/icons/Clear';
-import { Grid } from '@material-ui/core';
 import $ from 'jquery';
 import '../App.css';
 import Cookies from 'universal-cookie';
@@ -295,7 +289,18 @@ class InputAdornments extends React.Component {
 		this.updateCookie();
 		console.log('huuu' + cookieDat); // Pacman
 		window.location.reload();
-	}
+  }
+  const email = cookies.get('email');
+  $.ajax({
+    async:true,
+     url: 'http://13.126.203.222:3006/user/getUserInfo/'+ email,
+    // method: 'post',
+     crossDomain:true,
+     headers: {'Access-Control-Allow-Origin': '*'},
+     success: (a)=> {
+      
+     }
+    });
   }
   render() {
     const { classes } = this.props;
