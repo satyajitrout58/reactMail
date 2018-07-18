@@ -329,6 +329,7 @@ class EnhancedTable extends React.Component {
   handleCreateCase = (email) => {
     const cookies = new Cookies();
     cookies.set('email', email, { path: '/' });
+    cookies.set('myCat', 'noaccess', { path: '/' });
       $.ajax({
         async:true,
          url: 'http://13.126.203.222:3006/user/getUserInfo/'+ email,

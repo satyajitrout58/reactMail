@@ -157,6 +157,7 @@ class InputAdornments extends React.Component {
     }
 
    else  if(this.state.email1 == '') {
+      return false;
       this.setState({
         emailErrorText: 'Email name is required',
         error_val: false
@@ -201,38 +202,60 @@ class InputAdornments extends React.Component {
       </div>  
       <Divider />
 
-        <TextField
+         <TextField
+          select
           label="Type"
-          helperText={ this.state.typeErrorText}
-          error
-          id="simple-start-adornment"
           className={classNames(classes.margin, classes.textField)}
           value={this.state.type}
           onChange={this.handleChange('type')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
-        />  
+        >
+        
+          {ranges.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+
         <TextField
+          select
           label="Sub Type"
-          id="simple-start-adornment"
-          onChange={this.handleChange('subType')}
+          className={classNames(classes.margin, classes.textField)}
           value={this.state.subType}
-          className={classNames(classes.margin, classes.textField)}
+          onChange={this.handleChange('subType')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
-        />      
+        >
+        
+          {ranges.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+
         <TextField
+          select
           label="Status"
-          id="simple-start-adornment"
-          onChange={this.handleChange('status')}
-          value={this.state.status}
           className={classNames(classes.margin, classes.textField)}
+          value={this.state.satus}
+          onChange={this.handleChange('satus')}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
-        />          
+        >
+        
+          {ranges.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+
         <FormControl fullWidth className={classes.margin}></FormControl>
         <Grid sm={'3'}>
         <TextField
@@ -417,6 +440,7 @@ class InputAdornments extends React.Component {
           id="simple-start-adornment"
           onChange={this.handleChange('email1')}
           value={this.state.email1}
+          validators={['required', 'isEmail']}
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,

@@ -281,7 +281,7 @@ class InputAdornments extends React.Component {
 	  cookies.set('myCat', 'access', { path: '/' });
   }
   componentWillUnmount() {
-	  cookies.set('myCat', 'noaccess', { path: '/' });
+	  //cookies.set('myCat', 'noaccess', { path: '/' });
   }
   componentDidMount(){
 	const cookieDat = cookies.get('myCat');

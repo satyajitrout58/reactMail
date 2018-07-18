@@ -8,6 +8,7 @@
     "jquery": "^3.3.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-material-ui-form-validator": "^2.0.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "reactstrap": "^6.2.0",
