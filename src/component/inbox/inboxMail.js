@@ -23,19 +23,19 @@ import { lighten } from '@material-ui/core/styles/colorManipulator';
 import { NavLink } from "react-router-dom";
 import $ from 'jquery';
 import Cookies from 'universal-cookie';
-
+ 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
   counter += 1;
   return { id: counter, name, calories, fat, carbs, protein };
 }
-
+ 
 function getSorting(order, orderBy) {
   return order === 'desc'
     ? (a, b) => (b[orderBy] < a[orderBy] ? -1 : 1)
     : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1);
 }
-
+ 
 const columnData = [
   { id: 'From', numeric: false, disablePadding: true, label: 'From' },
   { id: 'Subject', numeric: true, disablePadding: false, label: 'Subject' },
@@ -43,15 +43,15 @@ const columnData = [
   { id: 'Action', numeric: true, disablePadding: false, label: 'Action' },
   //{ id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
 ];
-
+ 
 class EnhancedTableHead extends React.Component {
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
-
+ 
   render() {
     const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
-
+ 
     return (
       <TableHead>
         <TableRow>
@@ -91,7 +91,7 @@ class EnhancedTableHead extends React.Component {
     );
   }
 }
-
+ 
 EnhancedTableHead.propTypes = {
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
@@ -100,7 +100,7 @@ EnhancedTableHead.propTypes = {
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
 };
-
+ 
 const toolbarStyles = theme => ({
   root: {
     paddingRight: theme.spacing.unit,
@@ -125,10 +125,10 @@ const toolbarStyles = theme => ({
     flex: '0 0 auto',
   },
 });
-
+ 
 let EnhancedTableToolbar = props => {
   const { numSelected, classes } = props;
-
+ 
   return (
     <Toolbar
       className={classNames(classes.root, {
@@ -165,14 +165,14 @@ let EnhancedTableToolbar = props => {
     </Toolbar>
   );
 };
-
+ 
 EnhancedTableToolbar.propTypes = {
   classes: PropTypes.object.isRequired,
   numSelected: PropTypes.number.isRequired,
 };
-
+ 
 EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
-
+ 
 const styles = theme => ({
   root: {
     width: '100%',
@@ -185,12 +185,12 @@ const styles = theme => ({
     overflowX: 'auto',
   },
 });
-
+ 
 class EnhancedTable extends React.Component {
   constructor(props) {
     super(props);
     this.handelMountData = this.handelMountData.bind(this);
-
+ 
     this.state = {
       order: 'asc',
       orderBy: 'calories',
@@ -235,14 +235,14 @@ class EnhancedTable extends React.Component {
   handleRequestSort = (event, property) => {
     // const orderBy = property;
     // let order = 'desc';
-
+ 
     // if (this.state.orderBy === property && this.state.order === 'desc') {
     //   order = 'asc';
     // }
-
+ 
     // this.setState({ order, orderBy });
   };
-
+ 
   handleSelectAllClick = (event, checked) => {
     if (checked) {
       this.setState(state => ({ selected: state.data.map(n => n.id) }));
@@ -250,12 +250,12 @@ class EnhancedTable extends React.Component {
     }
     this.setState({ selected: [] });
   };
-
+ 
   handleClick = (event, id) => {
     const { selected } = this.state;
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
-
+ 
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, id);
     } else if (selectedIndex === 0) {
@@ -268,14 +268,14 @@ class EnhancedTable extends React.Component {
         selected.slice(selectedIndex + 1),
       );
     }
-
+ 
     this.setState({ selected: newSelected });
   };
-
+ 
   handleChangePage = (event, page) => {
     this.setState({ page });
   };
-
+ 
   handleChangeRowsPerPage = event => {
     this.setState({ rowsPerPage: event.target.value });
   };
@@ -310,9 +310,9 @@ class EnhancedTable extends React.Component {
        }
      });
   };
-
+ 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
-
+ 
   showContentDetail = (mdata) =>{
     $.ajax({
       async:false,
@@ -323,32 +323,33 @@ class EnhancedTable extends React.Component {
         this.props.onSelectLanguage(apiData.data);
        }
      });
-      
+       
   }
-  
-  handleCreateCase = (email) => {
+   
+  handleCreateCase = (email, id) => {
     const cookies = new Cookies();
     cookies.set('email', email, { path: '/' });
+    cookies.set('email_id', id, { path: '/' });
     cookies.set('myCat', 'noaccess', { path: '/' });
       $.ajax({
         async:true,
-         url: 'http://13.126.203.222:3006/user/getUserInfo/'+ email,
+         url: 'http://13.126.203.222:3006/user/getUserInfo/'+ id,
         // method: 'post',
          crossDomain:true,
          headers: {'Access-Control-Allow-Origin': '*'},
          success: (a)=> {
-           
+            
             console.log(a);
-
+ 
          }
         });
   }
-  
+   
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-
+ 
     return (
       <Paper className={classes.root}>
         <EnhancedTableToolbar numSelected={selected.length} />
@@ -367,7 +368,7 @@ class EnhancedTable extends React.Component {
                 .sort(getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
-                  const isSelected = this.isSelected(n.id);
+                  const isSelected = this.isSelected(n.id);                  
                   return (
                     <TableRow
                       hover
@@ -390,7 +391,7 @@ class EnhancedTable extends React.Component {
                       <span className="icon">
                       <NavLink to={"createcase/" + n.carbs}>
                       <Tooltip title="Create Case">
-                      <Folder onClick={this.handleCreateCase.bind(this, n.name)}/>
+                      <Folder onClick={this.handleCreateCase.bind(this, n.name, n.id)}/>
                       </Tooltip>
                       </NavLink>
                       </span>
@@ -399,7 +400,7 @@ class EnhancedTable extends React.Component {
                         <Clear onClick={this.handleDelete.bind(this, n.carbs)}/>
                       </Tooltip>
                       </span>
-                      
+                       
                       </TableCell>
                       {/* <TableCell numeric>{n.protein}</TableCell> */}
                     </TableRow>
@@ -431,9 +432,9 @@ class EnhancedTable extends React.Component {
     );
   }
 }
-
+ 
 EnhancedTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
+ 
 export default withStyles(styles)(EnhancedTable);

@@ -55,16 +55,91 @@ const ranges = [
 
 const ranges6 = [
   {
-    value: 'Client 1',
-    label: 'Client 1',
+    value: 'Type 1',
+    label: 'Type 1',
   },
   {
-    value: 'Client 2',
-    label: 'Client 2',
+    value: 'Type 2',
+    label: 'Type 2',
   },
   {
-    value: 'Client 3',
-    label: 'Client 3',
+    value: 'Type 3',
+    label: 'Type 3',
+  },
+];
+
+const subTypeRange = [
+  {
+    value: 'subType 1',
+    label: 'subType 1',
+  },
+  {
+    value: 'subType 2',
+    label: 'subType 2',
+  },
+  {
+    value: 'subType 3',
+    label: 'subType 3',
+  },
+];
+
+const statusRange = [
+  {
+    value: 'status 1',
+    label: 'status 1',
+  },
+  {
+    value: 'status 2',
+    label: 'status 2',
+  },
+  {
+    value: 'status 3',
+    label: 'status 3',
+  },
+];
+
+const titleRange = [
+  {
+    value: 'title 1',
+    label: 'title 1',
+  },
+  {
+    value: 'title 2',
+    label: 'tutle 2',
+  },
+  {
+    value: 'title 3',
+    label: 'title 3',
+  },
+];
+
+const suffixRange = [
+  {
+    value: 'suffix 1',
+    label: 'suffix 1',
+  },
+  {
+    value: 'suffix 2',
+    label: 'suffix 2',
+  },
+  {
+    value: 'suffix 3',
+    label: 'suffix 3',
+  },
+];
+
+const occupationRange = [
+  {
+    value: 'occupation 1',
+    label: 'occupation 1',
+  },
+  {
+    value: 'occupation 2',
+    label: 'occupation 2',
+  },
+  {
+    value: 'occupation 3',
+    label: 'occupation 3',
   },
 ];
 
@@ -127,6 +202,9 @@ class InputAdornments extends React.Component {
     this.setState(state => ({ showPassword: !state.showPassword }));
   };
   handelSave = () => {
+    let emailVl = this.state.email1;
+    let  re = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
+    let phone =this.state.phone1;
     if(this.state.type == '') {
       this.setState({
         typeErrorText: 'Please select Types',
@@ -149,24 +227,22 @@ class InputAdornments extends React.Component {
       });
     }
 
-    else if(this.state.phone1 == '') {
+    else if(isNaN(phone) || phone === '') {
+      //alert('phone');
       this.setState({
-        phoneErrorText: 'Phone name is required',
+        phoneErrorText: 'Please enter a valid phone number',
         error_val: false
       });
     }
 
-   else  if(this.state.email1 == '') {
-      return false;
+   else  if(!re.test(emailVl)) {
+     //alert('hii');
       this.setState({
-        emailErrorText: 'Email name is required',
+        emailErrorText: 'Please enter a valid email',
         error_val: false
       });
-    } else {
-      this.setState({
-        error_val: true
-      });
-    }
+
+    } 
 
     setTimeout(() => {
       if(this.state.error_val){    
@@ -182,6 +258,9 @@ class InputAdornments extends React.Component {
           }
         });
         }
+        this.setState({
+          error_val: true
+        });
     },1000);
   }
   
@@ -205,6 +284,7 @@ class InputAdornments extends React.Component {
          <TextField
           select
           label="Type"
+          placeholder={'Type'}
           className={classNames(classes.margin, classes.textField)}
           value={this.state.type}
           onChange={this.handleChange('type')}
@@ -213,7 +293,7 @@ class InputAdornments extends React.Component {
           }}
         >
         
-          {ranges.map(option => (
+          {ranges6.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -231,7 +311,7 @@ class InputAdornments extends React.Component {
           }}
         >
         
-          {ranges.map(option => (
+          {subTypeRange.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -249,7 +329,7 @@ class InputAdornments extends React.Component {
           }}
         >
         
-          {ranges.map(option => (
+          {statusRange.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -257,7 +337,7 @@ class InputAdornments extends React.Component {
         </TextField>
 
         <FormControl fullWidth className={classes.margin}></FormControl>
-        <Grid sm={'3'}>
+        <Grid sm={'2'}>
         <TextField
           select
           label="Titel"
@@ -269,17 +349,18 @@ class InputAdornments extends React.Component {
           }}
         >
         
-          {ranges.map(option => (
+          {titleRange.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}
         </TextField>
         </Grid>
-        <Grid sm={'3'}>
+        <Grid sm={'2'}>
         <TextField
           select
-          label="Sufix"
+          label="Suffix"
+          placeholder={'Suffix'}
           className={classNames(classes.margin, classes.textField)}
           value={this.state.sufix}
           onChange={this.handleChange('sufix')}
@@ -288,14 +369,14 @@ class InputAdornments extends React.Component {
           }}
         >
         
-          {ranges.map(option => (
+          {suffixRange.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}
         </TextField>
         </Grid>
-        <Grid sm={'6'}>
+        <Grid sm={'8'}>
         <TextField
           select
           label="Ocupation"
@@ -307,7 +388,7 @@ class InputAdornments extends React.Component {
           }}
         >
         
-          {ranges.map(option => (
+          {occupationRange.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -315,10 +396,11 @@ class InputAdornments extends React.Component {
         </TextField>
         </Grid>                
         <FormControl fullWidth className={classes.margin}></FormControl>
-
+        <Grid sm={6}>
         <TextField
           label="First Name"
           error
+          placeholder={'First Name'}
           helperText={ this.state.firstNameErrorText}
           id="simple-start-adornment"
           onChange={this.handleChange('firstName')}
@@ -328,9 +410,11 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         /> 
-
+        </Grid>
+        <Grid sm={2}>
         <TextField
           label="Middle Name"
+          placeholder={'Middle Name'}
           id="simple-start-adornment"
           onChange={this.handleChange('middleName')}
           value={this.state.middleName}
@@ -339,9 +423,11 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         /> 
-
+        </Grid>
+        <Grid sm={4}>
         <TextField
           label="Last Name"
+          placeholder={'Last Name'}
           error
           helperText={ this.state.lastNameErrorText}
           id="simple-start-adornment"
@@ -352,13 +438,14 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         />                 
-
+        </Grid>
     <FormControl fullWidth className={classes.margin}></FormControl>
 
         <FormControl fullWidth className={classes.margin}>
           <InputLabel htmlFor="adornment-amount">Organisation or Company Name</InputLabel>
           <Input
             id="adornment-amount"
+            placeholder={'Organisation or Company Name'}
             value={this.state.companyName}
             onChange={this.handleChange('companyName')}
             startAdornment={<InputAdornment position="start"></InputAdornment>}
@@ -392,6 +479,7 @@ class InputAdornments extends React.Component {
           label="Phone"
           error
           helperText={ this.state.phoneErrorText}
+          placeholder={'Phone'}
           id="simple-start-adornment"
           onChange={this.handleChange('phone1')}
           value={this.state.phone1}
@@ -401,9 +489,10 @@ class InputAdornments extends React.Component {
           }}
         /> 
 		</Grid>
-		<Grid sm={'3'}>
+		<Grid sm={'1'}>
          <TextField
           label="Ext"
+          placeholder={'Ext'}
           id="simple-start-adornment"
           onChange={this.handleChange('ext1')}
           value={this.state.ext1}
@@ -413,7 +502,7 @@ class InputAdornments extends React.Component {
           }}
         />   
 		</Grid>
-		<Grid sm={'3'}>
+		<Grid sm={'1'}>
         <TextField 
           select
           label="Type"
@@ -432,11 +521,12 @@ class InputAdornments extends React.Component {
           ))}
         </TextField>
 		</Grid>
-		<Grid sm={'3'}>
+		<Grid sm={'7'}>
          <TextField
           error
           helperText={ this.state.emailErrorText}
           label="Email"
+          placeholder={'Email'}
           id="simple-start-adornment"
           onChange={this.handleChange('email1')}
           value={this.state.email1}
@@ -452,6 +542,7 @@ class InputAdornments extends React.Component {
 		<Grid sm={'3'}>
 		<TextField
           label="Phone"
+          placeholder={'Phone'}
           id="simple-start-adornment"
           onChange={this.handleChange('phone2')}
           value={this.state.phone2}
@@ -461,9 +552,10 @@ class InputAdornments extends React.Component {
           }}
         /> 
 		</Grid>
-		<Grid sm={'3'}>
+		<Grid sm={'1'}>
          <TextField
           label="Ext"
+          placeholder={'Ext'}
           id="simple-start-adornment"
           onChange={this.handleChange('ext2')}
           value={this.state.ext2}
@@ -473,7 +565,7 @@ class InputAdornments extends React.Component {
           }}
         />   
 		</Grid>
-		<Grid sm={'3'}>
+		<Grid sm={'1'}>
         <TextField 
           select
           label="Type"
@@ -492,9 +584,10 @@ class InputAdornments extends React.Component {
           ))}
         </TextField>
 		</Grid>
-		<Grid sm={'3'}>
+		<Grid sm={'7'}>
          <TextField
           label="Email"
+          placeholder={'Email'}
           id="simple-start-adornment"
           onChange={this.handleChange('email2')}
           value={this.state.email2}
@@ -510,6 +603,7 @@ class InputAdornments extends React.Component {
 		<Grid sm={'3'}>
         <TextField
           label="Phone"
+          placeholder={'Phone'}
           id="simple-start-adornment"
           onChange={this.handleChange('phone3')}
           value={this.state.phone3}
@@ -519,9 +613,10 @@ class InputAdornments extends React.Component {
           }}
         /> 
 		</Grid>
-		<Grid sm={'3'}>
+		<Grid sm={'1'}>
          <TextField
           label="Ext"
+          placeholder={'Ext'}
           id="simple-start-adornment"
           onChange={this.handleChange('ext3')}
           value={this.state.ext3}
@@ -531,7 +626,7 @@ class InputAdornments extends React.Component {
           }}
         />   
 		</Grid>
-		<Grid sm={'3'}>
+		<Grid sm={'1'}>
         <TextField 
           select
           label="Type"
@@ -550,9 +645,10 @@ class InputAdornments extends React.Component {
           ))}
         </TextField>
 		</Grid>
-		<Grid sm={'3'}>
+		<Grid sm={'7'}>
          <TextField
           label="Email"
+          placeholder={'Email'}
           id="simple-start-adornment"
           onChange={this.handleChange('email3')}
           value={this.state.email3}
@@ -565,9 +661,10 @@ class InputAdornments extends React.Component {
   <FormControl fullWidth className={classes.margin}></FormControl>
 
 
-
+        <Grid sm={'9'}>
         <TextField
           label="Address"
+          placeholder={'Address'}
           id="simple-start-adornment"
           onChange={this.handleChange('address')}
           value={this.state.address}
@@ -576,7 +673,8 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         /> 
-      
+        </Grid>
+        <Grid sm={'3'}>
         <TextField 
           select
           label="Type"
@@ -594,13 +692,14 @@ class InputAdornments extends React.Component {
             </MenuItem>
           ))}
         </TextField>
-
+        </Grid>
           
   <FormControl fullWidth className={classes.margin}></FormControl>
 
 <FormControl fullWidth className={"hight"}>
 <TextField
           label="Address2"
+          placeholder={'Address2'}
           id="simple-start-adornment"
           onChange={this.handleChange('adress2')}
           value={this.state.adress2}
@@ -611,9 +710,10 @@ class InputAdornments extends React.Component {
         /> 
 </FormControl>
 
-
+        <Grid sm={'8'}>
         <TextField
           label="City"
+          placeholder={'City'}
           id="simple-start-adornment"
           onChange={this.handleChange('city')}
           value={this.state.city}
@@ -622,10 +722,11 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         /> 
-
-
+        </Grid>
+        <Grid sm={'2'}>
          <TextField
           label="Pincode"
+          placeholder={'Pincode'}
           id="simple-start-adornment"
           onChange={this.handleChange('pinCode')}
           value={this.state.pinCode}
@@ -633,9 +734,12 @@ class InputAdornments extends React.Component {
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
-        />     
+        />  
+        </Grid>
+        <Grid sm={'2'}>   
         <TextField
           label="Postal Code"
+          placeholder={'Postal Code'}
           id="simple-start-adornment"
           onChange={this.handleChange('PostCode')}
           value={this.state.PostCode}
@@ -644,6 +748,7 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         />
+        </Grid>
       </div>
     );
   }

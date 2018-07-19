@@ -23,7 +23,7 @@ let url_string = window.location.href;
 let url = new URL(url_string);
 let id = url.pathname.slice(12);
 const cookies = new Cookies();
-
+ 
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -40,10 +40,10 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit,
-  
+   
   }
 });
-
+ 
 const ranges = [
   {
     value: 'Assign A',
@@ -58,7 +58,7 @@ const ranges = [
     label: 'Assign C',
   },
 ];
-
+ 
 const ranges1 = [
   {
     value: 'Type 1',
@@ -73,7 +73,7 @@ const ranges1 = [
     label: 'Type 3',
   },
 ];
-
+ 
 const ranges2 = [
   {
     value: 'Sub type 1',
@@ -88,7 +88,7 @@ const ranges2 = [
     label: 'Sub type 3',
   },
 ];
-
+ 
 const ranges3 = [
   {
     value: 'Active',
@@ -103,7 +103,7 @@ const ranges3 = [
     label: 'Pogress',
   },
 ];
-
+ 
 const ranges4 = [
   {
     value: 'English',
@@ -114,7 +114,7 @@ const ranges4 = [
     label: 'Latin',
   },
 ];
-
+ 
 const ranges5 = [
   {
     value: 'Assign To 1',
@@ -129,7 +129,7 @@ const ranges5 = [
     label: 'Assign To 3',
   },
 ];
-
+ 
 const ranges6 = [
   {
     value: 'Client 1',
@@ -144,7 +144,7 @@ const ranges6 = [
     label: 'Client 3',
   },
 ];
-
+ 
 const ranges7 = [
   {
     value: 'Reference 1',
@@ -159,9 +159,9 @@ const ranges7 = [
     label: 'Reference 3',
   },
 ];
-
-
-
+ 
+ 
+ 
 class InputAdornments extends React.Component {
   state = {
     amount: '',
@@ -189,25 +189,25 @@ class InputAdornments extends React.Component {
     clientErrorText: '',
     subjectErrorText: ''
   };
-
+ 
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
   };
-  
+   
   handleChangeCheck = prop => event => {
       //console.log([prop]);
       !this.state[prop] ? this.setState({ [prop]: true }) : this.setState({ [prop]: false }) ;
       console.log(this.state[prop]);
   };
-
+ 
   handleMouseDownPassword = event => {
     event.preventDefault();
   };
-
+ 
   handleClickShowPassword = () => {
     this.setState(state => ({ showPassword: !state.showPassword }));
   };
-
+ 
     handelSave = () => {
         if(this.state.typeRange == ''){
           this.setState({
@@ -215,29 +215,29 @@ class InputAdornments extends React.Component {
             error_val: false
           });
         }
-        
+         
         if (this.state.subject == '') {
           this.setState({
             subjectErrorText: 'Subject is Required',
             error_val: false
           });
-          
+           
         } 
-        
+         
         if (this.state.clientRange == '') {
           this.setState({
             clientErrorText: 'Please Select Client',
             error_val: false
           });
         } 
-        
+         
         if (this.state.referenceRange == '') {
           this.setState({
             referenceErrorText: 'Please Select Reference',
             error_val: false
           });
         } 
-
+ 
         setTimeout(() => {
           if(this.state.error_val){
             $.post({
@@ -251,14 +251,14 @@ class InputAdornments extends React.Component {
                 if(apiData){
                   window.location.href='/';
                 }
-              
+               
               }
             });
             }  
         }, 1000);
-
-       
-
+ 
+        
+ 
        // if(error_val == 0){
         // $.post({
         //   async:true,
@@ -271,40 +271,41 @@ class InputAdornments extends React.Component {
         //     if(apiData){
         //       window.location.href='/';
         //     }
-          
+           
         //   }
         // });      
        // } 
-         
+          
   }
   updateCookie = () => {
-	  cookies.set('myCat', 'access', { path: '/' });
+      cookies.set('myCat', 'access', { path: '/' });
   }
   componentWillUnmount() {
-	  //cookies.set('myCat', 'noaccess', { path: '/' });
+      //cookies.set('myCat', 'noaccess', { path: '/' });
   }
   componentDidMount(){
-	const cookieDat = cookies.get('myCat');
-	if(cookieDat != 'access'){
-		this.updateCookie();
-		console.log('huuu' + cookieDat); // Pacman
-		window.location.reload();
+    const cookieDat = cookies.get('myCat');
+    if(cookieDat != 'access'){
+        this.updateCookie();
+        console.log('huuu' + cookieDat); // Pacman
+        window.location.reload();
   }
   const email = cookies.get('email');
+  const email_id = cookies.get('email_id');
   $.ajax({
     async:true,
-     url: 'http://13.126.203.222:3006/user/getUserInfo/'+ email,
+     url: 'http://13.126.203.222:3006/user/getUserInfo/'+ email_id,
     // method: 'post',
      crossDomain:true,
      headers: {'Access-Control-Allow-Origin': '*'},
      success: (a)=> {
-      
+       
      }
     });
   }
   render() {
     const { classes } = this.props;
-
+ 
     return (
       <div className={classes.root}>
       <div className={'caseButton'}>
@@ -318,12 +319,13 @@ class InputAdornments extends React.Component {
       </span> 
       </div>  
       <Divider />
-
+ 
         <TextField
           label="Case Id"
           id="simple-start-adornment"
           className={classNames(classes.margin, classes.textField)}
           value={this.state.receved}
+          placeholder={'Case Id'}
           onChange={this.handleChange('receved')}
           placeholder={'Case Id'}
           InputProps={{
@@ -332,17 +334,18 @@ class InputAdornments extends React.Component {
         /> 
         <TextField
           label="Receved"
+          placeholder={'Receved'}
           id="simple-start-adornment"
           className={classNames(classes.margin, classes.textField)}
           value={this.state.receved}
           onChange={this.handleChange('receved')}
-          placeholder={''}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         />  
         <TextField
           label="Due"
+          placeholder={'Due'}
           id="simple-start-adornment"
           onChange={this.handleChange('due')}
           value={this.state.due}
@@ -361,7 +364,7 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         >
-        
+         
           {ranges.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
@@ -372,6 +375,7 @@ class InputAdornments extends React.Component {
         <TextField
           error
         //  id="error"
+         placeholder={'Type'}
           select
           label="Type *"
           helperText={ this.state.typeErrorText}
@@ -382,7 +386,7 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         >
-        
+         
           {ranges1.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
@@ -392,6 +396,7 @@ class InputAdornments extends React.Component {
         <TextField
           select
           label="Sub Type"
+          placeholder={'Sub Type'}
           className={classNames(classes.margin, classes.textField)}
           value={this.state.subTypeRange}
           onChange={this.handleChange('subTypeRange')}
@@ -399,17 +404,18 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         >
-        
+         
           {ranges2.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}
         </TextField>
-
+ 
          <TextField
           select
           label="Status"
+          placeholder={'Status'}
           className={classNames(classes.margin, classes.textField)}
           value={this.state.statusRange}
           onChange={this.handleChange('statusRange')}
@@ -417,29 +423,31 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         >
-        
+         
           {ranges3.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}
         </TextField>
-                       
+                        
         <FormControl fullWidth className={classes.margin}>
           <InputLabel htmlFor="adornment-amount" className="error_leable">Subject *</InputLabel>
           <Input        
             id="adornment-amount"
             value={this.state.subject}
+            placeholder={'Subject'}
             onChange={this.handleChange('subject')}
             startAdornment={<InputAdornment position="start"></InputAdornment>}
           />
           <div className={'error_leable'} >{ this.state.subjectErrorText}</div>
         </FormControl>
-
+ 
  <div className={'checkbox-box'}>
         <TextField
           select
           label="Language"
+          placeholder={'Language'}
           className={classNames(classes.margin, classes.textField)}
           value={this.state.languageRange}
           onChange={this.handleChange('languageRange')}
@@ -447,7 +455,7 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         >
-        
+         
           {ranges4.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
@@ -457,6 +465,7 @@ class InputAdornments extends React.Component {
         <TextField
           select
           label="Assigned To"
+          placeholder={'Assigned To'}
           className={classNames(classes.margin, classes.textField)}
           value={this.state.assignRange}
           onChange={this.handleChange('assignRange')}
@@ -464,16 +473,16 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         >
-        
+         
           {ranges5.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}
-        </TextField>	
-
+        </TextField>  
+ 
           <span className="chaeck_box">
-        
+         
         <FormControlLabel
           control={
             <Checkbox
@@ -495,15 +504,16 @@ class InputAdornments extends React.Component {
           }
           label="Sensitive"
         />   
-        
+         
         </span>      
-        </div>	
+        </div>    
         <FormControl fullWidth className={classes.margin}></FormControl>
         <FormControl fullWidth className={"hight"}>
         <TextField 
           error
           select
           label="Client *"
+          placeholder={'Client'}
           helperText={ this.state.clientErrorText}
           className={classNames(classes.textField, classes.margin)}
           value={this.state.clientRange}
@@ -512,7 +522,7 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         >
-    
+     
           {ranges6.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
@@ -526,6 +536,7 @@ class InputAdornments extends React.Component {
           error
           select
           label="Reference *"
+          placeholder={'Reference'}
           helperText={ this.state.referenceErrorText }
           className={classNames(classes.textField, classes)}
           value={this.state.referenceRange}
@@ -534,7 +545,7 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         >
-    
+     
           {ranges7.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
@@ -545,17 +556,18 @@ class InputAdornments extends React.Component {
         <AddBox className={'ref_add_box'} primary/>
         </span>
         </FormControl>
-
-
+ 
+ 
         <FormControl fullWidth className={classes.margin}>
           <SimpleTable/>
           </FormControl>
-
+ 
         <FormControl fullWidth className={classes.margin}>
           <InputLabel htmlFor="adornment-amount">Summary</InputLabel>
           <Input
             id="adornment-amount"
             value={this.state.summary}
+            placeholder={'Summary'}
             onChange={this.handleChange('summary')}
             startAdornment={<InputAdornment position="start"></InputAdornment>}
           />
@@ -566,9 +578,9 @@ class InputAdornments extends React.Component {
     );
   }
 }
-
+ 
 InputAdornments.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
+ 
 export default withStyles(styles)(InputAdornments);
