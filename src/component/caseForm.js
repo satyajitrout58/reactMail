@@ -376,7 +376,7 @@ class InputAdornments extends React.Component {
         />  
         <TextField
         id="date"
-        label="Birthday"
+        label="Due"
         type="date"
         defaultValue=""
         className={classes.textField}
