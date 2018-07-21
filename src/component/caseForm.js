@@ -95,8 +95,8 @@ const ranges3 = [
     label: 'Active',
   },
   {
-    value: 'InActive',
-    label: 'InActive',
+    value: 'In active',
+    label: 'In active',
   },
   {
     value: 'Pogress',
@@ -187,7 +187,8 @@ class InputAdornments extends React.Component {
     error_val: true,
     referenceErrorText: '',
     clientErrorText: '',
-    subjectErrorText: ''
+    subjectErrorText: '',
+    caseId: ''
   };
  
   handleChange = prop => event => {
@@ -303,19 +304,49 @@ class InputAdornments extends React.Component {
      }
     });
   }
+  handleReset = () => {
+    this.setState({
+      amount: '',
+      password: '',
+      weight: '',
+      weightRange: '',
+      assignARange: '',
+      typeRange: '',
+      subTypeRange: '',
+      statusRange: '',
+      languageRange: '',
+      assignRange: '',
+      clientRange: '',
+      referenceRange: '',
+      showPassword: false,
+      receved:'',
+      due: '',
+      subject: '',
+      summary: '',
+      urgent: false,
+      sensitive: false,
+      typeErrorText: '',
+      error_val: true,
+      referenceErrorText: '',
+      clientErrorText: '',
+      subjectErrorText: '',
+      caseId: ''  
+    })
+  }
+
   render() {
     const { classes } = this.props;
  
     return (
       <div className={classes.root}>
       <div className={'caseButton'}>
+      <span class={'save_clear'} onClick={this.handleReset.bind(this)}>
+      <Clear/>
+      </span>       
       <span className={'button-case'} onClick={this.handelSave.bind(this)}>
       <Button variant="contained" color="primary" className={classes.button}>
         Save <CheckCircle/>
       </Button> 
-     <span class={'save_clear'}>
-      <Clear/>
-      </span>
       </span> 
       </div>  
       <Divider />
@@ -324,9 +355,9 @@ class InputAdornments extends React.Component {
           label="Case Id"
           id="simple-start-adornment"
           className={classNames(classes.margin, classes.textField)}
-          value={this.state.receved}
+          value={this.state.caseId}
           placeholder={'Case Id'}
-          onChange={this.handleChange('receved')}
+          onChange={this.handleChange('caseId')}
           placeholder={'Case Id'}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -344,16 +375,15 @@ class InputAdornments extends React.Component {
           }}
         />  
         <TextField
-          label="Due"
-          placeholder={'Due'}
-          id="simple-start-adornment"
-          onChange={this.handleChange('due')}
-          value={this.state.due}
-          className={classNames(classes.margin, classes.textField)}
-          InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
-          }}
-        />            
+        id="date"
+        label="Birthday"
+        type="date"
+        defaultValue=""
+        className={classes.textField}
+        InputLabelProps={{
+          shrink: true,
+        }}
+        />        
         <TextField
           select
           label="Assigned To"

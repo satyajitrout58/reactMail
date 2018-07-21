@@ -206,20 +206,21 @@ label + .MuiInput-formControl-174,label + .MuiInput-formControl-158 {
   height: 71px !important;
   position: absolute;
   right: -29px;
-  top: 13px;
+  top: 8px;
   width: 38px !important;
 } 
 .ref_add_box{
   color: #3889d3;
   height: 71px !important;
   position: absolute;
-  right: -37px;
-  top: 5px;
+  right: -29px;
+  top: 8px;
   width: 38px !important; 
 }
 .save_clear .MuiSvgIcon-root-56{
   border:1px solid;
   border-radius: 50%;
+  float: right;
 }
 .mailContent{
   margin:20px;
@@ -240,10 +241,14 @@ label + .MuiInput-formControl-174,label + .MuiInput-formControl-158 {
 .save_clear {
   margin-top: 15px;
   float: right;
+  cursor:pointer;
 }
 .InputAdornments-textField-112 {
   width: 98%;
 }
 .error_leable{
   color: red !important;
+}
+.MuiFormControl-root-159{
+  margin:5px !important;
 }

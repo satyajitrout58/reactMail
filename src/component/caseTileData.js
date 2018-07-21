@@ -39,7 +39,7 @@ export const mailFolderListItems = (
       <ListItemIcon>
         <SettingsInputHdmi />
       </ListItemIcon>
-      <ListItemText primary="Dicsion" />
+      <ListItemText primary="Decision" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>

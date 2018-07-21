@@ -85,16 +85,16 @@ const subTypeRange = [
 
 const statusRange = [
   {
-    value: 'status 1',
-    label: 'status 1',
+    value: 'Active',
+    label: 'Active',
   },
   {
-    value: 'status 2',
-    label: 'status 2',
+    value: 'Inactive',
+    label: 'Inactive',
   },
   {
-    value: 'status 3',
-    label: 'status 3',
+    value: 'Pogress',
+    label: 'Pogress',
   },
 ];
 
@@ -264,19 +264,59 @@ class InputAdornments extends React.Component {
     },1000);
   }
   
+  handelClear = () => {
+    this.setState({
+      type: '',
+      subType: '',
+      status: '',
+      titel: '',
+      sufix: '',
+      ocupation: '',
+      firstName: '',
+      middleName: '',
+      lastName: '',
+      companyName: '',
+      relatedTo: '',
+      phone1: '',
+      ext1: '',
+      type1: '',
+      email1: '',
+      phone2: '',
+      ext2: '',
+      type2: '',
+      email2: '',
+      phone3: '',
+      ext3: '',
+      type3: '',
+      email3: '',
+      address: '',
+      type4: '',
+      adress2: '',
+      city: '',
+      pinCode: '',
+      PostCode: '',
+      error_val: true,
+      typeErrorText: '',
+      firstNameErrorText: '',
+      lastNameErrorText: '',
+      phoneErrorText: '',
+      emailErrorText: ''  
+    });
+  }
+
   render() {
     const { classes } = this.props;
 
     return (
       <div className={classes.root}>
       <div className={'caseButton'}>
+      <span class={'save_clear'} onClick={this.handelClear.bind(this)}>
+      <Clear/>
+      </span>    
       <span className={'button-case'} onClick={this.handelSave.bind(this)}>
       <Button variant="contained" color="primary" className={classes.button}>
         Save <CheckCircle/>
       </Button> 
-     <span class={'save_clear'}>
-      <Clear/>
-      </span>
       </span> 
       </div>  
       <Divider />
