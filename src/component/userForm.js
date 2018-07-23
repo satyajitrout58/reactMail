@@ -365,7 +365,18 @@ class InputAdornments extends React.Component {
       firstNameErrorText: '',
       lastNameErrorText: '',
       phoneErrorText: '',
-      emailErrorText: ''  
+      emailErrorText: '',
+      typePlaceHolder: 'Type',
+      type1PlaceHolder:'Type',
+      subTypePlaceHolder:'sub Type',
+      statusPlaceholder:'Status',
+      titlePlaceHolder: 'Title',
+      suffixPlaceHolder: 'Suffix',
+      occupationPlaceHolder: 'Ocupation',
+      relatedToPlaceHolder: 'Related To',
+      type2PlaceHolder:'Type',
+      type3PlaceHolder:'Type',
+      type4PlaceHolder:'Type', 
     });
   }
 
