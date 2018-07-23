@@ -333,7 +333,7 @@ class InputAdornments extends React.Component {
     this.setState({
       type: '',
       subType: '',
-      status: '',
+      satus: '',
       titel: '',
       sufix: '',
       ocupation: '',
