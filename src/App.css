@@ -252,3 +252,8 @@ label + .MuiInput-formControl-174,label + .MuiInput-formControl-158 {
 .MuiFormControl-root-159{
   margin:5px !important;
 }
+.placeholder{
+  position: absolute;
+  left:8px;
+  color: #a2a2a2;
+}

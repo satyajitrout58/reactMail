@@ -85,10 +85,6 @@ const subTypeRange = [
 
 const statusRange = [
   {
-    value: 'Active',
-    label: 'Active',
-  },
-  {
     value: 'Inactive',
     label: 'Inactive',
   },
@@ -180,12 +176,81 @@ class InputAdornments extends React.Component {
     firstNameErrorText: '',
     lastNameErrorText: '',
     phoneErrorText: '',
-    emailErrorText: ''
-
+    emailErrorText: '',
+    typePlaceHolder: 'Type',
+    type1PlaceHolder:'Type',
+    subTypePlaceHolder:'sub Type',
+    statusPlaceholder:'Status',
+    titlePlaceHolder: 'Title',
+    suffixPlaceHolder: 'Suffix',
+    occupationPlaceHolder: 'Ocupation',
+    relatedToPlaceHolder: 'Related To',
+    type2PlaceHolder:'Type',
+    type3PlaceHolder:'Type',
+    type4PlaceHolder:'Type',
+   
   };
 
   handleChange = prop => event => {
+    console.log(prop);
     this.setState({ [prop]: event.target.value });
+    switch(prop) {
+      case 'type':       
+         this.setState({  
+          typePlaceHolder: ''
+         });
+      break;
+      case 'subType':       
+      this.setState({  
+        subTypePlaceHolder: ''
+      });
+      break;
+      case 'satus':       
+      this.setState({  
+        statusPlaceholder:'',
+      });                    
+      break;
+      case 'titel':       
+      this.setState({  
+        titlePlaceHolder: ''
+      });
+      break;
+      case 'sufix':       
+      this.setState({  
+        suffixPlaceHolder: ''
+      });
+      break;
+      case 'ocupation':       
+      this.setState({  
+        occupationPlaceHolder: ''
+      });
+      break;
+      case 'relatedTo':       
+      this.setState({  
+        relatedToPlaceHolder: ''
+      });
+      break;
+      case 'type1':       
+      this.setState({  
+        type1PlaceHolder: ''
+      });
+      break;
+      case 'type2':       
+      this.setState({  
+        type2PlaceHolder: ''
+      });
+      break;
+      case 'type3':       
+      this.setState({  
+        type3PlaceHolder: ''
+      });
+      break;
+      case 'type4':       
+      this.setState({  
+        type4PlaceHolder: ''
+      });
+      break;
+      }
   };
 
   handleChangeCheck = prop => event => {
@@ -329,7 +394,7 @@ class InputAdornments extends React.Component {
           value={this.state.type}
           onChange={this.handleChange('type')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.typePlaceHolder}</span></InputAdornment>,
           }}
         >
         
@@ -347,7 +412,7 @@ class InputAdornments extends React.Component {
           value={this.state.subType}
           onChange={this.handleChange('subType')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.subTypePlaceHolder}</span></InputAdornment>,
           }}
         >
         
@@ -365,7 +430,7 @@ class InputAdornments extends React.Component {
           value={this.state.satus}
           onChange={this.handleChange('satus')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.statusPlaceholder}</span></InputAdornment>,
           }}
         >
         
@@ -385,7 +450,7 @@ class InputAdornments extends React.Component {
           value={this.state.titel}
           onChange={this.handleChange('titel')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.titlePlaceHolder}</span></InputAdornment>,
           }}
         >
         
@@ -405,7 +470,7 @@ class InputAdornments extends React.Component {
           value={this.state.sufix}
           onChange={this.handleChange('sufix')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.suffixPlaceHolder}</span></InputAdornment>,
           }}
         >
         
@@ -424,7 +489,7 @@ class InputAdornments extends React.Component {
           value={this.state.ocupation}
           onChange={this.handleChange('ocupation')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.occupationPlaceHolder}</span></InputAdornment>,
           }}
         >
         
@@ -500,7 +565,7 @@ class InputAdornments extends React.Component {
           value={this.state.relatedTo}
           onChange={this.handleChange('relatedTo')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.relatedToPlaceHolder}</span></InputAdornment>,
           }}
         >
     
@@ -529,7 +594,7 @@ class InputAdornments extends React.Component {
           }}
         /> 
 		</Grid>
-		<Grid sm={'1'}>
+		<Grid sm={'2'}>
          <TextField
           label="Ext"
           placeholder={'Ext'}
@@ -542,7 +607,7 @@ class InputAdornments extends React.Component {
           }}
         />   
 		</Grid>
-		<Grid sm={'1'}>
+		<Grid sm={'2'}>
         <TextField 
           select
           label="Type"
@@ -550,7 +615,7 @@ class InputAdornments extends React.Component {
           value={this.state.type1}
           onChange={this.handleChange('type1')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.type1PlaceHolder}</span></InputAdornment>,
           }}
         >
     
@@ -561,7 +626,7 @@ class InputAdornments extends React.Component {
           ))}
         </TextField>
 		</Grid>
-		<Grid sm={'7'}>
+		<Grid sm={'5'}>
          <TextField
           error
           helperText={ this.state.emailErrorText}
@@ -592,7 +657,7 @@ class InputAdornments extends React.Component {
           }}
         /> 
 		</Grid>
-		<Grid sm={'1'}>
+		<Grid sm={'2'}>
          <TextField
           label="Ext"
           placeholder={'Ext'}
@@ -605,7 +670,7 @@ class InputAdornments extends React.Component {
           }}
         />   
 		</Grid>
-		<Grid sm={'1'}>
+		<Grid sm={'2'}>
         <TextField 
           select
           label="Type"
@@ -613,7 +678,7 @@ class InputAdornments extends React.Component {
           value={this.state.type2}
           onChange={this.handleChange('type2')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.type2PlaceHolder}</span></InputAdornment>,
           }}
         >
     
@@ -624,7 +689,7 @@ class InputAdornments extends React.Component {
           ))}
         </TextField>
 		</Grid>
-		<Grid sm={'7'}>
+		<Grid sm={'5'}>
          <TextField
           label="Email"
           placeholder={'Email'}
@@ -653,7 +718,7 @@ class InputAdornments extends React.Component {
           }}
         /> 
 		</Grid>
-		<Grid sm={'1'}>
+		<Grid sm={'2'}>
          <TextField
           label="Ext"
           placeholder={'Ext'}
@@ -666,7 +731,7 @@ class InputAdornments extends React.Component {
           }}
         />   
 		</Grid>
-		<Grid sm={'1'}>
+		<Grid sm={'2'}>
         <TextField 
           select
           label="Type"
@@ -674,7 +739,7 @@ class InputAdornments extends React.Component {
           value={this.state.type3}
           onChange={this.handleChange('type3')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.type3PlaceHolder}</span></InputAdornment>,
           }}
         >
     
@@ -685,7 +750,7 @@ class InputAdornments extends React.Component {
           ))}
         </TextField>
 		</Grid>
-		<Grid sm={'7'}>
+		<Grid sm={'5'}>
          <TextField
           label="Email"
           placeholder={'Email'}
@@ -722,7 +787,7 @@ class InputAdornments extends React.Component {
           value={this.state.type4}
           onChange={this.handleChange('type4')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.type4PlaceHolder}</span></InputAdornment>,
           }}
         >
     

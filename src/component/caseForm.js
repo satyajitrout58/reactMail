@@ -91,10 +91,6 @@ const ranges2 = [
  
 const ranges3 = [
   {
-    value: 'Active',
-    label: 'Active',
-  },
-  {
     value: 'In active',
     label: 'In active',
   },
@@ -163,6 +159,11 @@ const ranges7 = [
  
  
 class InputAdornments extends React.Component {
+
+  constructor(){
+    super();
+    this.handleChange = this.handleChange.bind(this);
+  }
   state = {
     amount: '',
     password: '',
@@ -188,11 +189,72 @@ class InputAdornments extends React.Component {
     referenceErrorText: '',
     clientErrorText: '',
     subjectErrorText: '',
-    caseId: ''
+    caseId: '',
+    assignRangePlaceHolder: 'Assigned To',
+    assignARangePlaceHolder: 'Assigned To',
+    typeRangePlaceholder: 'Type',
+    subTypeRangePlaceHolder: 'Sub Type',
+    statusRangePlaceHolder: 'Status',
+    languageRangePlaceHolder: 'Language',
+    clientRangePlaceHolder: 'Client',
+    referenceRangePlaceholder: 'Reference'
+
+
+
+
   };
  
   handleChange = prop => event => {
-    this.setState({ [prop]: event.target.value });
+    let placeHolder = prop;
+    console.log(placeHolder);
+    this.setState({ [prop]: event.target.value ,
+                    
+                  });
+     switch(prop) {
+       case 'statusRange':       
+          this.setState({  
+            statusRangePlaceHolder: ''
+          });
+        break;
+        case 'assignARange':
+        this.setState({  
+          assignARangePlaceHolder: ''
+        });
+        break;
+        case 'typeRange':
+        this.setState({  
+          typeRangePlaceholder: ''
+        });
+        break;
+        case 'subTypeRange':
+        this.setState({  
+           subTypeRangePlaceHolder: ''
+        });
+        break;
+        case 'languageRange':
+        this.setState({  
+          languageRangePlaceHolder: ''
+       });
+        break;
+        case 'assignRange':
+        this.setState({  
+          assignRangePlaceHolder: '',
+       });
+        break;
+        case 'clientRange':
+        this.setState({  
+          clientRangePlaceHolder: '',
+       });
+        break;
+        case 'referenceRange':
+        this.setState({  
+          referenceRangePlaceholder: '',
+       });
+        break;
+      }
+    setTimeout(() => {
+      console.log(this.state.statusRangePlaceHolder);
+    },3000);
   };
    
   handleChangeCheck = prop => event => {
@@ -330,7 +392,15 @@ class InputAdornments extends React.Component {
       referenceErrorText: '',
       clientErrorText: '',
       subjectErrorText: '',
-      caseId: ''  
+      caseId: '',
+      assignRangePlaceHolder: 'Assigned To',
+      assignARangePlaceHolder: 'Assigned To',
+      typeRangePlaceholder: 'Type',
+      subTypeRangePlaceHolder: 'Sub Type',
+      statusRangePlaceHolder: 'Status',
+      languageRangePlaceHolder: 'Language',
+      clientRangePlaceHolder: 'Client',
+      referenceRangePlaceholder: 'Reference'
     })
   }
 
@@ -391,7 +461,7 @@ class InputAdornments extends React.Component {
           value={this.state.assignARange}
           onChange={this.handleChange('assignARange')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.assignARangePlaceHolder}</span></InputAdornment>,
           }}
         >
          
@@ -413,7 +483,7 @@ class InputAdornments extends React.Component {
           value={this.state.typeRange}
           onChange={this.handleChange('typeRange')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.typeRangePlaceholder}</span></InputAdornment>,
           }}
         >
          
@@ -431,7 +501,7 @@ class InputAdornments extends React.Component {
           value={this.state.subTypeRange}
           onChange={this.handleChange('subTypeRange')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.subTypeRangePlaceHolder}</span></InputAdornment>,
           }}
         >
          
@@ -450,7 +520,7 @@ class InputAdornments extends React.Component {
           value={this.state.statusRange}
           onChange={this.handleChange('statusRange')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder ' + this.state.statusRangePlaceHolder }>{this.state.statusRangePlaceHolder}</span></InputAdornment>,
           }}
         >
          
@@ -482,7 +552,7 @@ class InputAdornments extends React.Component {
           value={this.state.languageRange}
           onChange={this.handleChange('languageRange')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.languageRangePlaceHolder}</span></InputAdornment>,
           }}
         >
          
@@ -500,7 +570,7 @@ class InputAdornments extends React.Component {
           value={this.state.assignRange}
           onChange={this.handleChange('assignRange')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.assignRangePlaceHolder}</span></InputAdornment>,
           }}
         >
          
@@ -549,7 +619,7 @@ class InputAdornments extends React.Component {
           value={this.state.clientRange}
           onChange={this.handleChange('clientRange')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.clientRangePlaceHolder}</span></InputAdornment>,
           }}
         >
      
@@ -572,7 +642,7 @@ class InputAdornments extends React.Component {
           value={this.state.referenceRange}
           onChange={this.handleChange('referenceRange')}
           InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><span className={'placeholder'}>{this.state.referenceRangePlaceholder}</span></InputAdornment>,
           }}
         >
      
